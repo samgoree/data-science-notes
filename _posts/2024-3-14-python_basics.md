@@ -8,20 +8,32 @@ date: 2024-03-14
 
 This page describes the basics of Python programming in Jupyter notebooks.
 
-## Opening Jupyter
+
+
+## Jupyter Notebooks
 
 Our programming environment is called Jupyter Notebook, which allows us to write code in small executable cells. This environment is perfect for data science because we want to see the results of one line of code before we type the next one.
 
+### Running Jupyter
+
+The easiest way to run Jupyter is by installing [Anaconda Python](https://www.anaconda.com/download). Anaconda is free software, you shouldn't have to register or pay to use it. After installing, you should be able to run the program "Jupyter Notebook" on your computer. If you can't find Jupyter, Anaconda distributes with a program called "Anaconda Navigator" which can be used to open Jupyter.
+
+Alternatively, if you're comfortable using the terminal on your computer, You can start it by typing `jupyter notebook` in your terminal.
+
 Jupyter is run using a client-server model. That means that you have to run two programs to use it.
 
-* The server: this is a program that actually runs your code, but it doesn't have a user interface. You can start it by typing `jupyter notebook` in a terminal window, or running the "jupyter notebook" program through your start menu.
-* The client: we access Jupyter through a web browser, which actually shows us a window to write our code. Your web browser is something like Google Chrome, Firefox, Safari or Edge. When you start the jupyter server, it will automatically open your web browser for you. If it doesn't, or if you need to access it, type in the address `localhost:8888` into the address bar at the top of your web browser.
+* The server: this is a program that actually runs your code, but it doesn't have a user interface. It should look like a terminal box with lots of text in it. If you ran `jupyter notebook` in a terminal, this is the program you just ran.
+* The client: we access Jupyter through a web browser, which actually shows us where to write our code. Your web browser is something like Google Chrome, Firefox, Safari or Edge. When you start the jupyter server, it will automatically open your web browser for you. If it doesn't, or if you need to access it, look for a URL in the long printout from the server and enter that into your web browser.
 
 While Jupyter is viewed through a web browser, it is not a website! It is actually running locally on your computer, so you can use it when you're not otherwise connected to the internet. Opening Jupyter will land you on this page, which gives you a view of your filesystem:
 
 ![](../assets/images/jupyter.png)
 
 This is my home directory. On a Mac computer it is located at `/Users/yourusername/` where yourusername is your user name on the computer. On a windows computer, it would be at `C:/users/yourusername/`. I recommend creating a folder for content related to data science. Click New > Folder to create a new folder, then scroll down and check the box next to "Untitled Folder", then click "Rename" at the top and type "DSC105" (or whatever name you want) into the text box.
+
+If you want to use a data file in your code, you can either place it in that directory using a normal file browser (like Finder or File Explorer) or click the "upload" button in Jupyter. Even though it says "upload," it's not going to the cloud.
+
+### Using the Jupyter Interface
 
 To create a new notebook, navigate to the location on your computer you would like it to go and click New > Notebook in the top right corner. You should see something like this (minus the colored boxes).
 
@@ -61,7 +73,7 @@ Data science requires doing math on numbers. We can use Python to do this math j
 | *        | Multiplication  | `3 * 2` | `6`    |
 | /        | Division        | `3 / 2` | `1.5`  |
 | **       | Exponentiation  | `3 ** 2` | `9`   |
-| //       | Integer Divison | `3 // 2` | `1`   |
+| //       | Integer Division | `3 // 2` | `1`   |
 | %        | Modulo (remainder) | `3 % 2` | `1` |
 
 Try typing one of these examples into a code cell in your notebook.
@@ -111,9 +123,9 @@ We can also use multiplication on strings.`"a" * 10` produces `"aaaaaaaaaa"`. Be
 
 If all Python could do was calculator functions, it wouldn't be very useful. The real power of a programming language like Python is its ability to store and manipulate data using *variables*. Variables in Python are words which hold values. For example:
 
-`x = 1` 	The equals sign sets the value of the variable x to 1.
+`x = 1` 	The equals sign *assigns* the variable x a value of 1.
 
-`x + 1` 	results in 2 because x is set to 1.
+`x + 1` 	results in 2 because x was assigned the value 1.
 
 In general, we can think about variables as behaving like boxes. Each variable name is a box. When we use the `=` symbol, we put whatever is on the right of the equals into a box and label it with whatever is on the left of the equals. When we use the variable later on, Python searches for the box with that label and uses whatever is sitting in the box. If we put something else in the box, it replaces whatever was there before.
 
@@ -125,13 +137,59 @@ a + 2
 
 These three lines of code are perfectly legal, and result in 7. In the first line, we create a variable `a` and set it equal to 1. In the second line, we replace the 1 with a 5. In the third line, we check whatever is in `a` and add 2 to it. Since the value of `a` was most recently set to 5, we find a 5 there and add 2 to it, resulting in 7.
 
-Python variables do not have to be one letter. In fact, we try to avoid single-letter variable names! Variables can contain any sequence of upper case letters, lower case letters, underscores (_) and numbers. They have to start with a letter and cannot use *reserved words* which mean something in the language such as `for`, `if`, `print`, `sum` or `input`.
+Python variables do not have to be one letter. In fact, we try to avoid single-letter variable names! Variables can contain any sequence of upper case letters, lower case letters, underscores (_) and numbers. They have to start with a letter and cannot use *reserved words* which mean something in the language such as `for`, `if`, `print`, `sum` or `input`. 
+
+<details><summary>Full list of reserved words</summary>
+<code>and
+del
+from
+not
+while
+as
+elif
+global
+or
+with
+assert
+else
+if
+pass
+yield
+break
+except
+import
+print
+class
+exec
+in
+raise
+continue
+finally
+is
+return
+def
+for
+lambda
+try
+True
+False
+None
+nonlocal
+async
+await</code>
+</details>
 
 Good variable names are descriptive. For example, if you are analyzing the finances of a business, you might have variables like `expenses` and `revenue` so that you can write lines of code like
 
 `profit = revenue - expenses` 
 
 We call lines of code that are easy to interpret "self-documenting" since they do not require additional documentation to understand.
+
+## Comments
+
+Sometimes, though, code is not self-documenting. Then you have to document what it does. Data scientists typically write documentation through a combination of Markdown cells in our notebooks and comments in our code. Typically, we put big-picture documentation in Markdown cells, since we expect anyone reading our analysis later on to read them. For example, if you're using a specific model to analyze your data, you should have a Markdown cell explaining 
+
+There are two ways to write comments
 
 ## Functions
 
@@ -195,6 +253,8 @@ This produces the output
 x is now 7
 ```
 
+Notice that the print function works just as well with integers as it does with strings.
+
 When we pass multiple arguments to the print function, they get printed separated by a space. We can change that behavior by passing an additional *keyword* argument: `sep`. For example:
 
 ```
@@ -210,7 +270,3 @@ first---second
 This call to the `print` function has three arguments. The first two are called *positional* arguments while the third is a keyword argument which specifies the `sep` or separator as the string "---" instead of the string " ".
 
 That's it for the basics of Python! Almost all of the programming that we do in data science consists of calling functions and assigning to variables.
-
-# Practice Problems
-
-1. 
