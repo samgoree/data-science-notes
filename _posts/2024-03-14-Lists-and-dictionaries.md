@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "Lists and Strings"
+title:  "Lists and Dictionaries"
 date: 2024-03-14
 ---
 
-# Chapter 2: Python Data Structures
+# Chapter 2: Lists and Dictionaries
 
-This page describes two key Python data structures: lists and dictionaries.
+This page describes a key Python data structure: lists. After exploring lists, we will revisit strings and introduce another data structure: dictionaries.
 
 ## Why Data Structures?
 
@@ -14,13 +14,13 @@ In computer science, one of the most fundamental topics is how to organize data.
 
 Imagine I'm working at a library and the shelves are alphabetized from A to Z like so:
 
-![library_example](../assets/images/library_example.png)
+<img src="../assets/images/library_example.png" alt="library_example" style="zoom:25%;" />
 
 Now, what happens when I add a book to the As? I have to move a book down a shelf, then move a different book down another shelf, then move another book across to the next set of shelves, and on and on. If I'm shelving 100 books, that turns into a huge amount of work!
 
 What if, instead, we organize the books into more shelves, with fewer books per shelf?
 
-![library_example2](../assets/images/library_example_2.png)
+<img src="../assets/images/library_example_2.png" alt="library_example2" style="zoom:25%;" />
 
 This takes up more space, but when we add books at the start of the alphabet, we only have to move a few books out of the way, and we don't have to transfer books from shelf to shelf. Now, we can also split the work between multiple shelvers. Eventually, if too many books end up on one shelf, we may have to shift some books around to rebalance the shelves, but that won't happen very often.
 
@@ -98,8 +98,9 @@ Note that this does not work on strings.
 Just like we can call functions on strings and integers, we can call functions on lists. One of these functions we already know:
 
 ```python
-my_list = [2,4,6,8]
-len(my_list)
+lst = [2,4,6,8]
+length = len(lst)
+length
 ```
 
 Out: `4`, because there are four elements in the list.
@@ -109,8 +110,9 @@ Out: `4`, because there are four elements in the list.
 Another useful function for data science is the `sum` function, which adds up all the numbers in a list:
 
 ```
-my_list = [2,4,6,8]
-sum(my_list)
+lst = [2,4,6,8]
+total = sum(lst)
+total
 ```
 
 Out: `20` because 2 + 4 + 6 + 8 is 20.
@@ -126,6 +128,18 @@ print(lst1, lst2)
 ```
 
 Out: `[1, 3, 8, 2, 4, 9, 5] [1, 2, 3, 4, 5, 6, 7]`Notice that in lst1, the order is preserved while lst2 is sorted.
+
+#### reversed()
+
+A function that returns a reversed version of a list.
+
+```
+lst1 = [1,3,5,2,4]
+lst2 = reversed(lst1)
+print(lst1, lst2)
+```
+
+Out: `[1,3,5,2,4] [4,2,5,3,1]`
 
 ## List Methods
 
@@ -145,4 +159,38 @@ Out: `[1, 2, 3, 4]`. Notice how we didn't create a new list, we modified `lst`.
 
 #### .sort()
 
-Another method is the .sort() method. This doesn't 
+Another method is the .sort() method. This doesn't return a new list, instead it sorts a list *in-place*, overwriting the original list.
+
+```
+lst = [1,3,6,2,4,7,5]
+lst.sort()
+lst
+```
+
+Out: `[1, 2, 3, 4, 5, 6, 7]`. Notice `lst1` has changed and is now sorted.
+
+The .sort method does not return a value. That means if you try to use it like sorted(), it won't work.
+
+```
+lst1 = [1,3,6,2,4,7,5]
+lst2 = lst1.sort()
+lst2
+```
+
+If you run this code, the output is blank. If you run `print(lst2)` it will show `None`. That means lst2 doesn't actually contain a list. None is Python's null type, it has no type and no data. If a method returns nothing, it literally returns `None`.
+
+#### .reverse()
+
+Just like .sort, .reverse reverses a list in-place.
+
+```
+lst = [1,2,3]
+lst.reverse()
+lst
+```
+
+Out: `[3,2,1]`
+
+## String Methods
+
+In Chapter {{chapter_}}

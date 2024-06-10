@@ -193,19 +193,23 @@ There are two ways to write comments
 
 ## Functions
 
-Many of the things we want Python to do are not simple arithmetic. For example, we may want to read files on our computer or convert integers into strings. Many of these operations can be accomplished by using Python *function*s. We call functions using parentheses like this:
+Many of the things we want Python to do are not simple arithmetic. For example, we may want to read files on our computer or convert integers into strings. Many of these operations can be accomplished by using Python *function*s. Functions are like little factories that turn one or more inputs into an output. For example, a coat factory might turn linen, thread and buttons into coats.
+
+
+
+We call functions using parentheses like this:
 
  `function_name(argument1, argument2, ..., keyword_argument1=keyword_argument1_value, ...)`
 
-We say that functions are *called* on their *arguments* which are values in between the parentheses. If you're familiar with writing
+We say that functions are *called* on their *arguments* which are values in between the parentheses, and *return* a value when they are evaluated. If you're familiar with writing
 $$
 y = f(x)
 $$
-in math class, f is the function name and x is the argument. In programming, we can sometimes pass multiple arguments into functions separated by commas.
+in math class, f is the function name, x is the argument and y is the return value. In programming, we can sometimes pass multiple arguments into functions separated by commas.
 
 ### The `len` Function
 
-Our first example of a function for data science is `len(sequence)`. This function takes a sequence (like a string) as an argument and *returns* the length of that string. For example:
+Our first example of a function for data science is `len(sequence)`. This function takes a sequence (like a string) as an argument and returns the length of that string. For example:
 
 ```
 len("hello")
@@ -218,6 +222,8 @@ produces the output:
 ```
 
 because "hello" has five characters.
+
+Using our factory metaphor, the len function transforms a string into an integer representing its length.
 
 We can use variables for the input and output of functions:
 

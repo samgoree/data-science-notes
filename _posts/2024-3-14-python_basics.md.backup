@@ -1,0 +1,47 @@
+---
+layout: post
+title:  "Python and Jupyter Basics"
+date: 2024-03-14
+---
+
+This page describes the basics of Python programming in Jupyter notebooks.
+
+## Opening Jupyter
+
+Our programming environment is called Jupyter Notebook, which allows us to write code in small executable cells. This environment is perfect for data science because we want to see the results of one line of code before we type the next one.
+
+Jupyter is run using a client-server model. That means that you have to run two programs to use it.
+
+* The server: this is a program that actually runs your code, but it doesn't have a user interface. You can start it by typing `jupyter notebook` in a terminal window, or running the "jupyter notebook" program through your start menu.
+* The client: we access Jupyter through a web browser, which actually shows us a window to write our code. Your web browser is something like Google Chrome, Firefox, Safari or Edge. When you start the jupyter server, it will automatically open your web browser for you. If it doesn't, or if you need to access it, type in the address `localhost:8888` into the address bar at the top of your web browser.
+
+While Jupyter is viewed through a web browser, it is not a website! It is actually running locally on your computer, so you can use it when you're not otherwise connected to the internet. Opening Jupyter will land you on this page, which gives you a view of your filesystem:
+
+![]({{site.baseurl}}/assets/images/jupyter.png)
+This is my home directory. On my computer (a mac) it is located at `/Users/sgoree/`
+
+To create a new notebook, navigate to the location on your computer you would like it to go and click New > Notebook in the top right corner.
+
+## Arithmetic
+
+We can use Python as a calculator.
+
+| Operator | Operation | Example | Result |
+| -------- | --------- | ------- | ------ |
+| +        | Addition        | `3 + 2` | `5`    |
+| -        | Subtraction     | `3 - 2` | `1`    |
+| *        | Multiplication  | `3 * 2` | `6`    |
+| /        | Division        | `3 / 2` | `1.5`  |
+| **       | Exponentiation  | `3 ** 2` | `9`   |
+| //       | Integer Divison | `3 // 2` | `1`   |
+| %        | Modulo (remainder) | `3 % 2` | `1` |
+
+Students are usually familiar with the first few of these operations, but unfamiliar with integer division and modulo. When you do division on a calculator, it typically "fully divides" the numbers, yielding a decimal number. On computers, however, sometimes we have reasons to want to avoid decimal results. Imagine we are dividing 11 donuts among 5 students. Each student gets two donuts, and then we have one left over at the end. The two is the result of integer division (each student gets 2 donuts) and the one left is the remainder, the result of the modulo (mod) operator.
+
+These operations introduce us to two types of numbers:
+* Integers, whole numbers, like -2, 0, 4, 12, etc. (referred to as `int`)
+* Floating point numbers, decimals, like 1.0, -2.3, 1234.5678 or 3.14159265 (referred to as `float`)
+
+Numbers with decimals are called "floats" rather than "reals" or "rationals" for historical reasons. In the past, computers could only represent fixed-precision numbers, so 1/2 would be 0.500 instead of 0.5. Floating point numbers allow the decimal point to "float" at the minimum precision they need to represent the exact number, so they can both represent very small numbers and very large numbers.
+
+Sometimes, when Python e

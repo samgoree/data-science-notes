@@ -27,6 +27,10 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: sam__goree
 github_username:  samgoree
 
+# chapters
+chapter_jupyter: 1
+chapter_strings: 3
+
 # Build settings
 theme: minima
 plugins:
