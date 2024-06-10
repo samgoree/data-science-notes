@@ -7,7 +7,8 @@
 
       for (var i = 0; i < results.length; i++) {  // Iterate over the results
         var item = store[results[i].ref];
-        appendString += '<li><a href="' + item.url + '"><h3>' + item.title + '</h3></a>';
+        console.log(item.url);
+        appendString += '<li><a href="/data-science-notes' + item.url + '"><h3>' + item.title + '</h3></a>';
         appendString += '<p>' + item.content.substring(0, 150) + '...</p></li>';
       }
 
@@ -43,20 +44,19 @@
       this.field('author');
       this.field('category');
       this.field('content');
+      for (var key in window.store) { // Add the data to lunr
+        this.add({
+          'id': key,
+          'title': window.store[key].title,
+          'author': window.store[key].author,
+          'category': window.store[key].category,
+          'content': window.store[key].content
+        })
+      }
     });
 
-    for (var key in window.store) { // Add the data to lunr
-      idx.add({
-        'id': key,
-        'title': window.store[key].title,
-        'author': window.store[key].author,
-        'category': window.store[key].category,
-        'content': window.store[key].content
-      });
-
-      var results = idx.search(searchTerm); // Get lunr to perform a search
-      displaySearchResults(results, window.store); // We'll write this in the next section
-    }
+    var results = idx.search(searchTerm); // Get lunr to perform a search
+    displaySearchResults(results, window.store); // We'll write this in the next section
   }
 })();
 
