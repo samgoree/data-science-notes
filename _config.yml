@@ -29,6 +29,8 @@ github_username:  samgoree
 
 # chapters
 chapter_jupyter: 1
+chapter_lists: 2
+chapter_numpy: 4
 chapter_strings: 3
 
 # Build settings

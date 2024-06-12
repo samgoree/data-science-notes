@@ -8,24 +8,6 @@ date: 2024-03-14
 
 This page describes a key Python data structure: lists. After exploring lists, we will revisit strings and introduce another data structure: dictionaries.
 
-## Why Data Structures?
-
-In computer science, one of the most fundamental topics is how to organize data. In fact, computer science majors take an entire class on this topic where they learn the costs and benefits of different organizational strategies. To explore this concept, let's use an example.
-
-Imagine I'm working at a library and the shelves are alphabetized from A to Z like so:
-
-<img src="../assets/images/library_example.png" alt="library_example" style="zoom:25%;" />
-
-Now, what happens when I add a book to the As? I have to move a book down a shelf, then move a different book down another shelf, then move another book across to the next set of shelves, and on and on. If I'm shelving 100 books, that turns into a huge amount of work!
-
-What if, instead, we organize the books into more shelves, with fewer books per shelf?
-
-<img src="../assets/images/library_example_2.png" alt="library_example2" style="zoom:25%;" />
-
-This takes up more space, but when we add books at the start of the alphabet, we only have to move a few books out of the way, and we don't have to transfer books from shelf to shelf. Now, we can also split the work between multiple shelvers. Eventually, if too many books end up on one shelf, we may have to shift some books around to rebalance the shelves, but that won't happen very often.
-
-How did we avoid doing so much work? We used a different data structure. Instead of putting all of the books in a list together, we organized them into alphabetic categories. Now, local changes to one category don't affect the other categories.
-
 ## Lists
 
 The first data structure we're going to use in Python is a list. Lists are declared using square brackets [] with the elements separated by commas.
@@ -48,7 +30,7 @@ Notice that they are treated just like any other data type and assigned to a var
     </ul>
 </details>
 
-### Indexing Lists
+### !! Indexing Lists !!
 
 Each element of the list (the integers 1, 3 and 5 in the list above) is associated with a specific *index value*. For historical reasons, lists are *zero-indexed*, which means the first element has an index of 0.
 
@@ -77,19 +59,99 @@ initials
 
 Out: `SG`
 
+There are exclamation points around this section's header because indexing lists is very important in data science. While we won't be using Python lists for the entire class, we will be using other data structures which share this notation.
+
 ### Modifying Lists
 
 We can assign to the elements of lists:
 
 ```
-my_list = [1,3,5]
-my_list[1] = 2
-my_list
+lst = [1,3,5]
+lst[1] = 2
+lst
 ```
 
 Out: `[1, 2, 5]`. Notice the 3 has changed to a 2 because we assigned to it.
 
 Note that this does not work on strings.
+
+### Slicing
+
+We can "slice" lists and strings by providing two indices separated by a colon. Slicing yields the sublist starting from the first index and running up to, but not including, the second index. For example:
+
+ ```
+ lst = [8,6,7,5,3,0,9]
+ lst[2:4]
+ ```
+
+Out: `[7, 5]`
+
+To better understand, think of cutting up a table with scissors. We are making little snips before 2 and before 4, yielding the values [7,5]
+
+| Index | Element |
+| ----- | ------- |
+| 0     | 8       |
+| 1     | 6       |
+| **2** | **7**   |
+| **3** | **5**   |
+| 4     | 3       |
+| 5     | 0       |
+| 6     | 9       |
+
+Notice that you can predict the length of the slice. It will always have length equal to the end index minus the start index. In this case, 4 - 2 = 2
+
+If we omit one side of a slice, it indicates the start or end of the list. For example:
+
+```
+lst = [8,6,7,5,3,0,9]
+lst[:4]
+```
+
+Out: `[8, 6, 7, 5]`
+
+```
+lst = [8,6,7,5,3,0,9]
+lst[4:]
+```
+
+Out: `[3, 0, 9]`. Notice how these two slices, one from the start to 4 and one from 4 to the end, contain all of the values originally in the list.
+
+### Nested Lists
+
+We can put lists inside of lists. When we do that, we index the outer list first, then we can index the inner list. For example,
+
+```python
+nested_list = [[1,2,3], [4,5,6], [7,8,9]]
+sublist = nested_list[1]
+print(nested_lst, sublist[2], nested_list[1][2])
+```
+
+Out: `[[1, 2, 3], [4, 5, 6], [7, 8, 9]] 6 6`
+
+The nested list contains three sublists. We get the sublist at index position 1 using square bracket notation and save it as another variable, `sublist`. The value at index position 2 in `sublist` is 6. Equivalently, we can use `nested_lst[1][2]` to get 6 because Python resolves the first square bracket notation, than the second one.
+
+### List Arithmetic
+
+Much like strings, lists support two arithmetic expressions: concatenation (+) and repetition (*).
+
+Concatenating two lists combines them into a single list:
+
+```
+lst1 = [1,2,3]
+lst2 = [4,5,6]
+lst1 + lst2
+```
+
+Out: `[1, 2, 3, 4, 5, 6]`
+
+Multiplying a list by an integer n repeats its elements n times
+
+```
+lst = [1,2,3]
+lst * 4
+```
+
+Out: `[1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3]`
 
 ### Calling Functions on Lists
 
@@ -191,6 +253,154 @@ lst
 
 Out: `[3,2,1]`
 
-## String Methods
+## Dictionaries
 
-In Chapter {{chapter_}}
+In addition to lists, Python has another central data structure called a dictionary. Dictionaries are similar to lists in that they contain elements, but the way we access these elements is different.
+
+To review: lists are declared with square brackets. They are indexed by integer positions. Every list starts from index 0 and goes up:
+
+```
+my_list = [1,3,5]
+my_list[2]
+```
+
+Out: `5`
+
+| Index | Element |
+| ----- | ------- |
+| 0     | 1       |
+| 1     | 3       |
+| 2     | 5       |
+
+Dictionaries, on the other hand, are declared with curly braces. They contain key-value pairs and are indexed using keys, which do not have to be integers.
+
+````
+my_dict = {'a':1, 'b':3, 'c':5}
+my_dict['c']
+````
+
+Out: `5` 
+
+This dictionary contains three key-value pairs. They are separated by commas and the key and value are separated by colons (:). The keys are 'a', 'b' and 'c' and the values are 1, 3 and 5. We say that each key is *mapped* to the corresponding value.
+
+| Key  | Value |
+| ---- | ----- |
+| 'a'  | 1     |
+| 'b'  | 3     |
+| 'c'  | 5     |
+
+Dictionaries are *unordered* which means that there is no way to get "the first element." Indexing is done using the keys. For that reason, the keys have to be unique, but the values can contain duplicates.
+
+The best analogy for dictionaries is, well, the dictionary. A dictionary is a big book that maps words to their definitions. The words are the keys and the definitions are the values.
+
+```
+animals = {
+	'horse': 'A large, domesticated hoofed mammal',
+	'cow': 'A mature female cattle',
+	'donkey': 'A domesticated hoofed animal with long ears and a loud bray'
+}
+```
+
+It can also be helpful to think of dictionaries like houses on a street. Every house has a unique street number, that tells you where the house is along the street. People live in the houses, but sometimes they move in or out. In this analogy, the addresses are the keys and the people are the values.
+
+```
+maple_street = {
+	10: 'Sam',
+	11: 'Erica',
+	12: 'John',
+	14: 'Anna',
+	15: None,
+	16: 'Trevor',
+	17: 'Kevin'
+}
+maple_street[14]
+```
+
+Out: `'Anna'`
+
+### Modifying Dictionaries
+
+We can assign to the elements of dictionaries just like lists, except using the key.
+
+```
+dct = {2:4, 3:6, 4:8, 5:9}
+dct[5] = 10
+dct
+```
+
+Out: `{2: 4, 3: 6, 4: 8, 5: 10}`
+
+We can use similar syntax to add new elements to dictionaries:
+
+```
+dct = {2:4, 3:6, 4:8, 5:10}
+dct[6] = 12
+dct[6]
+```
+
+Out: `12`
+
+### Converting Dictionaries to Lists
+
+If we want to get a list of elements out of a dictionary, we need to impose an order on either the keys or the values, using the `.keys()` or `.values()` methods by sorting them:
+
+```
+dct = {2:8, 3:7, 4:6, 5:5}
+keys_list = sorted(dct.keys())
+keys_list
+```
+
+Out: `[2, 3, 4, 5]`. This approach (sorting the dictionary) returns a sorted list ordered from smallest to largest, dropping the values. Equivalently we can  get the values sorted from smallest to largest with the `.values()` method:
+
+```
+dct = {2:8, 3:7, 4:6, 5:5}
+values_list = sorted(dct.values())
+values_list
+```
+
+Out: `[5, 6, 7, 8]`
+
+If we want both the keys and values paired up, we can use another method: `.items()`
+
+```
+dct = {2:8, 3:7, 4:6, 5:5}
+items_list = sorted(dct.items())
+items_list
+```
+
+Out: `[(2, 8), (3, 7), (4, 6), (5, 5)]`
+
+Now, instead of just having the keys and values alone in a list, we have a list of *tuples*, each of which contains two elements which used to be key-value pairs.
+
+### Tuples
+
+This is our first encounter with tuples. Tuples are another data structure, more like lists than dictionaries. They have two key differences from lists:
+
+1. Tuples are notated with parentheses () instead of brackets [].
+2. Tuples are *immutable*: they do not have an append method and we cannot assign to their elements.
+
+For example:
+
+```
+tup = (1,3,5)
+```
+
+This code declares a tuple containing three elements. We can do concatenation and repetition on tuples, much like lists:
+
+```
+tup1 = (1,3,5)
+tup2 = (2,4,6)
+tup1 + tup2, tup1 * 2
+```
+
+Out: `(1, 3, 5, 2, 4, 6), (1, 3, 5, 1, 3, 5)`
+
+You may have noticed that parentheses have several different uses in Python:
+
+1. Parentheses determine the order of operations: things inside parentheses happen before things outside of them. e.g. `(1 + 1) * 3` evaluates to `6`.
+2. Parentheses are used when calling functions: e.g. `print('Hello')`
+3. Parentheses are used to declare tuples e.g. `('a', 'b')` is a tuple containing the strings "a" and "b."
+
+To distinguish tuples from order-of-operations parentheses, tuples must always contain a comma. So single element tuples are declared with a comma at the end, e.g. `(2,)`.
+
+While tuples are not as common as lists, they sometimes come up in data science, so it is good to be aware of them.
