@@ -61,6 +61,46 @@ Out: `SG`
 
 There are exclamation points around this section's header because indexing lists is very important in data science. While we won't be using Python lists for the entire class, we will be using other data structures which share this notation.
 
+### Creating Lists With the `range` Function
+
+In addition to declaring *list literals* where we write down all of the elements using square brackets, we can create lists of ascending integers using the `range` function. But we have to do a little work to use it. By default the range function produces a range object:
+
+```
+range(5)
+```
+
+Out: `range(0,5)`
+
+But we can convert it to a list with the `list` function:
+
+```
+list(range(5))
+```
+
+Out: `[0, 1, 2, 3, 4]`
+
+Notice that range(5) starts at 0 and ends at 4, meaning it is a list of length 5.
+
+Range has different behavior based on how many arguments we pass into it. If we call range with two values, it sets the start and end numbers:
+
+```
+list(range(3,8))
+```
+
+Out: `[3, 4, 5, 6, 7]`
+
+Again, `range` starts at the start and ends one before the end.
+
+If we use a third argument, it controls the step size.
+
+```
+list(range(10,20,2))
+```
+
+Out: `[10, 12, 14, 16, 18]`
+
+In this case, the range goes from 10 up to but not including 20 and counts up by 2 each time.
+
 ### Modifying Lists
 
 We can assign to the elements of lists:

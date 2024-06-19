@@ -195,17 +195,15 @@ There are two ways to write comments
 
 Many of the things we want Python to do are not simple arithmetic. For example, we may want to read files on our computer or convert integers into strings. Many of these operations can be accomplished by using Python *function*s. Functions are like little factories that turn one or more inputs into an output. For example, a coat factory might turn linen, thread and buttons into coats.
 
-
-
 We call functions using parentheses like this:
 
- `function_name(argument1, argument2, ..., keyword_argument1=keyword_argument1_value, ...)`
+ `return_value = function_name(argument1, argument2, ...)`
 
-We say that functions are *called* on their *arguments* which are values in between the parentheses, and *return* a value when they are evaluated. If you're familiar with writing
+We say that functions are *called* on their *arguments* which are values in between the parentheses separated by commas, and *return* a value when they are evaluated. If you're familiar with writing
 $$
 y = f(x)
 $$
-in math class, f is the function name, x is the argument and y is the return value. In programming, we can sometimes pass multiple arguments into functions separated by commas.
+in math class, f is the function name, x is the argument and y is the return value. But in programming, we typically use more than one letter for our function and argument names.
 
 ### The `len` Function
 
@@ -239,11 +237,11 @@ Produces the output:
 9
 ```
 
-Step by step: we assign the string "Sam Goree" to the variable `my_name`, then we take its length and assign that value to the variable `my_name_length`, then we show its value by putting it on a line alone at the end of a cell.
+Step by step: we assign the string "Sam Goree" to the variable `my_name`, then we take its length and assign that value to the variable `my_name_length`, then we show its value by putting it on a line alone at the end of a cell. 
 
 ### The `print` Function
 
-The first function all programmers learn is called `print`. It allows us to show a value before our code finishes executing. Historically, before computers had screens, this meant literally printing a line on paper. We don't read our program output from paper anymore, but the name has stuck. We use the print function like follows:
+One of the first functions all programmers learn is called `print`. It allows us to show a value before our code finishes executing. Historically, before computers had screens, this meant literally printing a line on paper. We don't read our program output from paper anymore, but the name has stuck. We use the print function like follows:
 
 ```
 x = 5
@@ -261,18 +259,24 @@ x is now 7
 
 Notice that the print function works just as well with integers as it does with strings.
 
-When we pass multiple arguments to the print function, they get printed separated by a space. We can change that behavior by passing an additional *keyword* argument: `sep`. For example:
+When we pass multiple arguments to the print function, they get printed separated by a space.
 
-```
-print("first", "second", sep="---")
-```
+### Positional and Keyword Arguments
 
-This produces the output
+In Python, there are two different kinds of arguments we can provide to functions:
 
-```
-first---second
-```
+* Positional arguments are the type we have seen so far, they are required and passed in separated by commas.
 
-This call to the `print` function has three arguments. The first two are called *positional* arguments while the third is a keyword argument which specifies the `sep` or separator as the string "---" instead of the string " ".
+* Keyword arguments are optional arguments passed in using a keyword and an equals sign. For example, `print` has a keyword argument `sep` which controls the separator character placed in between the other arguments. We can change `sep` in our call to print to make it print a different separator. For example:
 
-That's it for the basics of Python! Almost all of the programming that we do in data science consists of calling functions and assigning to variables.
+  ```
+  print("first", "second", sep="---")
+  ```
+
+  This produces the output
+
+  ```
+  first---second
+  ```
+
+  This call to the `print` function has three arguments. The first two are called *positional* arguments while the third is a keyword argument which specifies the `sep` or separator as the string "---" instead of the space character " ".
