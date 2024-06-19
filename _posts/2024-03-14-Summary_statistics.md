@@ -30,5 +30,8 @@ not_so_random
 
 Out: `0.771320643266746`. If you run the same code, you will get the exact same output.
 
-## Random Number Generators
+<details><summary>About Numpy's random number generator</summary>The specific random number generator that numpy.random uses is called the Mersenne Twister, which uses bitwise arithmetic to generate random numbers in a way which is guaranteed to be difficult to predict without the random seed. This property is important for security reasons, as random number generators are used frequently to come up with cryptographic keys for encrypting sensitive data.</details>
 
+## Random Number Functions
+
+There are several numpy functions 
