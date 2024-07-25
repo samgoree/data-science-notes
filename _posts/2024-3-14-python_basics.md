@@ -47,7 +47,7 @@ There are a few things to learn about this interface.
 
    ![image-20240602113032650](../assets/images/error.png)
 
-   You will become very familiar with Python error messages like this one. Errors are a natural part of programming, and in general they do not mean you are wrong or bad, they usually mean you typed something slightly wrong. Error messages like this one give us a lot of useful information:
+   You will become very familiar with Python error messages like this one. Errors are a natural part of programming, and in general they do not mean you are wrong or bad, they usually mean you typed something slightly wrong or one of your assumptions was wrong. Error messages like this one give us a lot of useful information:
 
    * `NameError`: this is the type of error, it's related to the word that we typed.
    * `Cell In[2], line 1`: this is where the error occurred.

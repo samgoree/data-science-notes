@@ -40,6 +40,188 @@ data.mean(), data.min(), data.max()
 
 Here, the data must be a numpy array.
 
+In the following sections, we will explore two frameworks that statisticians have for summarizing data.
+
+### Min, Max, Median, Quartiles
+
+Let's say we have a list of numbers:
+
+![quartiles](C:\Users\samgo\data-science-notes\assets\images\quartiles.png) 
+
+We can summarize our list by sorting it from smallest to largest, splitting it into equal-sized bins and looking at the bin boundaries. There will always be boundaries by the minimum (2) and maximum (9) elements, so those are our first summary statistic. In numpy:
+
+```python
+data = np.array([2,4,3,9,7,5,8,6])
+np.min(data), np.max(data)
+```
+
+Out: `(2,9)`
+
+ ![quartiles(2)](C:\Users\samgo\data-science-notes\assets\images\quartiles(2).png) 
+
+If we split it into two bins, the boundary falls between 5 and 6. So 5.5 is the middle of the dataset: the median (in blue). We can compute this in numpy:
+
+```python
+data = np.array([2,4,3,9,7,5,8,6])
+np.median(data)
+```
+
+Out: `5.5`
+
+If we split it into four bins, we get boundaries between 3 and 4 and between 7 and 8 as well (in orange). We call these boundaries the quartiles. In numpy there is no quartile function, so we use the more general quantile function (which can find any percentage boundary) on the values 0.25 (25%) and 0.75 (75%).
+
+```python
+np.quantile(data, 0.25), np.quantile(data, 0.75)
+```
+
+Out: `(3.75, 7.25)`
+
+Notice that these values are not exactly split. Numpy uses a method called *linear interpolation* to make the quantile function continuous, so the 0.25 quantile is closer to 4 than 3. This is because the 1/7 quantile (~0.14) needs to be exactly 3 and the 2/7 quantile (~0.28) needs to be exactly 4, and 0.25 is closer to 2/7 than 1/7. 
+
+These are the values visualized in a box and whisker plot:
+
+```python
+import matplotlib.pyplot as plt
+plt.boxplot(data)
+```
+
+![a box plot showing the same data.](../assets/images/summary_statistics_boxplot.png)
+
+
+
+### Count, Sum, Mean, Variance and Standard Deviation
+
+There are other ways to describe this list of numbers:
+
+![quartiles](C:\Users\samgo\data-science-notes\assets\images\quartiles.png)  
+
+We can say that there are eight values here and they sum to 44. 
+
+In math:
+$$
+X = (2,4,3,9,7,5,8,6) \\
+|X| = 8 \\
+\sum\limits_{i=1}^{|X|}X_i = 44
+$$
+You may have seen bars (||) used to indicate absolute value. When used on tuples or sets they notate "size of". The large sigma (Σ) notates a sum over each value of i from 1 to the size of X (like a for loop). While we do not use a lot of mathematical notation in data science, you should be familiar with these notational conventions.
+
+In numpy:
+
+```python
+data = np.array([2,4,3,9,7,5,8,6])
+print(len(data))
+print(sum(data))
+```
+
+Out: 
+
+```
+8
+44
+```
+
+We do not need to write np.sum or np.len because these are built-in functions in Python. If we want to use numpy, we can do so:
+
+```python
+data.shape[0]
+data.sum()
+```
+
+Out:
+
+```
+8
+44
+```
+
+#### Mean
+
+If there are 8 values and they sum to 44, their average value (i.e. mean value) is 5.5, since that sum and length would be exactly the same if we had a list of 8 5.5s instead. We notate the mean of a vector X with a bar over the X.
+
+In math:
+$$
+\bar X = \frac{1}{|X|} \sum\limits_{i=1}^{|X|} X_i \\
+= \frac{1}{8} \cdot 44\\
+= 5.5
+$$
+
+
+In numpy:
+
+```python
+sum(data) / len(data)
+data.mean()
+```
+
+Out: 
+
+```
+5.5
+5.5
+```
+
+These are two equivalent ways to compute the mean.
+
+#### Variance
+
+The mean, like the median, is a *reductive* measure, meaning it loses important information about the dataset. Specifically, this dataset is not 8 copies of the number 5.5, it *varies* in value. We can measure how much the data varies from the mean by taking the mean of the squared differences, called the variance:
+$$
+Var(X) = \frac{1}{|X|} \sum\limits_{i=1}^{|X|} (X_i - \bar X)^2 \\
+= \frac{1}{8}((-3.5)^2 + (-2.5)^2 + (-1.5)^2 + (-0.5)^2 + 0.5^2 + 1.5^2 + 2.5^2 + 3.5^2) \\
+= 5.25
+$$
+We square the differences so that the large differences count more than the small ones. We can easily prove from this definition that the variance (for real-valued data) is always non-negative. Notice that each term is squared, and all squares of real numbers are non-negative. 
+
+In Python:
+
+```python
+var = np.mean((data - np.mean(data))**2)
+print(var)
+var = np.var(data)
+print(var)
+```
+
+Out:
+
+```
+5.25
+5.25
+```
+
+There is also some statistical theory which supports this definition:
+$$
+Var(x) = \overline{(X - \bar{X})^2}\\
+= \overline{X^2 - 2X\bar X + \bar X^2} \\
+= \overline{X^2} - 2\bar X^2 + \bar X^2 \\
+= \overline{X^2} - \bar X^2
+$$
+In other words, the variance is the amount that the average of the (data squared) differs from the (average of the data) squared.
+
+#### Standard Deviation
+
+One limitation of the variance is that it squares the units of the data. So if our data is measured in seconds, the variance will be measured in square seconds. If our data is measured in meters, the variance will be measured in square meters. That can make the variance unintuitive. A solution is to take the square root of the variance, called the standard deviation, notated with a σ (lowercase sigma).
+$$
+\sigma = \sqrt{Var(X)}
+$$
+Or in Python:
+
+```python
+var = np.mean((data - np.mean(data))**2)
+std = np.sqrt(var)
+print(std)
+std = np.std(data)
+print(std)
+```
+
+Out:
+
+```
+2.29128784747792
+2.29128784747792
+```
+
+These are two equivalent ways to compute the standard deviation.
+
 ## Random Numbers
 
 In daily speech, we often refer to things as "random" because they are arbitrary or erratic (e.g. "I put on a random shirt today" or "you said something so random"). In data science, we do not use the word random like that. When we say something is random, we mean that it is literally chosen *at random* using a totally unpredictable process like a die roll or coin toss.
@@ -169,4 +351,4 @@ plt.show()
 
 ![](../assets/images/rng.png)
 
-Notice how the estimate of the mean starts with a very wide range, but as the sample size increases, it converges to the correct value, with diminishing returns for larger sample sizes. A key goal of statistics as a discipline is to understand and measure the uncertainty in these sorts of estimated summary statistics. While we are not as concerned with quantifying uncertainty in data science, it is a key concept we will use going forward, especially when trying to estimate how confident we can be in the conclusions of our analysis.
+Notice how the estimate of the mean starts with a very wide range, but as the sample size increases, it converges to the correct value, with diminishing returns for larger sample sizes. A key goal of statistics as a discipline is to understand and measure the uncertainty in these sorts of estimated summary statistics. While it is not our top concern in data science, uncertainty is a key concept we will use going forward, especially when trying to understand the conclusions of our analysis and whether our predictions are trustworthy.

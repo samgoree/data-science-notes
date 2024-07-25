@@ -32,7 +32,7 @@ Notice that they are treated just like any other data type and assigned to a var
 
 ### !! Indexing Lists !!
 
-Each element of the list (the integers 1, 3 and 5 in the list above) is associated with a specific *index value*. For historical reasons, lists are *zero-indexed*, which means the first element has an index of 0.
+Each element of the list (the integers 1, 3 and 5 in the list above) is associated with a specific *index value*. For historical reasons, lists are *zero-indexed*, which means the first element has an index of 0 and the last element has an index of the length - 1.
 
 | Index | Element |
 | ----- | ------- |
@@ -60,6 +60,15 @@ initials
 Out: `SG`
 
 There are exclamation points around this section's header because indexing lists is very important in data science. While we won't be using Python lists for the entire class, we will be using other data structures which share this notation.
+
+### List Errors
+
+There are several error messages that come up when working with lists and strings:
+
+* `SyntaxError`: This usually means there is some problem with your parentheses, brackets or variable names.
+
+* `IndexError`: This usually means the index you used was out of range. A common cause is if you forget that indices only go to the length - 1.
+* `TypeError`: This error means that something in your code is not the type you wanted it to be. For example: `lst['a']` will cause a type error for every list because you can't index lists with strings (that's only for dictionaries!). `lst + 2` will cause a type error because you can't add lists and integers together (that's only for numpy arrays!).
 
 ### Creating Lists With the `range` Function
 
