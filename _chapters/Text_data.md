@@ -1,4 +1,8 @@
-# Chapter 7: Text Analysis
+---
+layout: post
+title:  "Chapter 7: Text Analysis"
+number: 7
+---
 
 One area where data science diverges from data analytics is its approach to text data. While data analysts typically view text as categorical, data scientists view text as sequence data. This chapter describes Python-based methods of text analysis with and without Pandas dataframes.
 

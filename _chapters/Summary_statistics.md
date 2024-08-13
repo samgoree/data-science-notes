@@ -1,4 +1,8 @@
-# Chapter 5: Random Numbers and Summary Statistics
+---
+layout: post
+title:  "Chapter 5: Summary Statistics"
+number: 5
+---
 
 This page continues our study of Numpy through its summary statistic functions and random number module.
 
@@ -98,12 +102,20 @@ There are other ways to describe this list of numbers:
 We can say that there are eight values here and they sum to 44. 
 
 In math:
+
 $$
 X = (2,4,3,9,7,5,8,6) \\
+$$
+
+$$
 |X| = 8 \\
+$$
+
+$$
 \sum\limits_{i=1}^{|X|}X_i = 44
 $$
-You may have seen bars (||) used to indicate absolute value. When used on tuples or sets they notate "size of". The large sigma (Σ) notates a sum over each value of i from 1 to the size of X (like a for loop). While we do not use a lot of mathematical notation in data science, you should be familiar with these notational conventions.
+
+You may have seen bars (\|\|) used to indicate absolute value. When used on tuples or sets they notate "size of". The large sigma (Σ) notates a sum over each value of i from 1 to the size of X (like a for loop). While we prefer code to mathematical notation in data science, you should be familiar with these notational conventions.
 
 In numpy:
 
@@ -120,7 +132,7 @@ Out:
 44
 ```
 
-We do not need to write np.sum or np.len because these are built-in functions in Python. If we want to use numpy, we can do so:
+We do not need to write `np.sum` or `np.len` because `sum` and `len` are built-in functions in Python. If we want to use numpy, we can do so:
 
 ```python
 data.shape[0]
@@ -139,18 +151,25 @@ Out:
 If there are 8 values and they sum to 44, their average value (i.e. mean value) is 5.5, since that sum and length would be exactly the same if we had a list of 8 5.5s instead. We notate the mean of a vector X with a bar over the X.
 
 In math:
+
 $$
 \bar X = \frac{1}{|X|} \sum\limits_{i=1}^{|X|} X_i \\
+$$
+
+$$
 = \frac{1}{8} \cdot 44\\
+$$
+
+$$
 = 5.5
 $$
 
 
-In numpy:
+In Python:
 
 ```python
-sum(data) / len(data)
-data.mean()
+sum(data) / len(data) # vanilla python
+data.mean() # numpy
 ```
 
 Out: 
@@ -165,11 +184,19 @@ These are two equivalent ways to compute the mean.
 #### Variance
 
 The mean, like the median, is a *reductive* measure, meaning it loses important information about the dataset. Specifically, this dataset is not 8 copies of the number 5.5, it *varies* in value. We can measure how much the data varies from the mean by taking the mean of the squared differences, called the variance:
+
 $$
 Var(X) = \frac{1}{|X|} \sum\limits_{i=1}^{|X|} (X_i - \bar X)^2 \\
+$$
+
+$$
 = \frac{1}{8}((-3.5)^2 + (-2.5)^2 + (-1.5)^2 + (-0.5)^2 + 0.5^2 + 1.5^2 + 2.5^2 + 3.5^2) \\
+$$
+
+$$
 = 5.25
 $$
+
 We square the differences so that the large differences count more than the small ones. We can easily prove from this definition that the variance (for real-valued data) is always non-negative. Notice that each term is squared, and all squares of real numbers are non-negative. 
 
 In Python:
@@ -188,21 +215,34 @@ Out:
 5.25
 ```
 
-There is also some statistical theory which supports this definition:
+A neat property which results from this definition of the variance:
+
 $$
 Var(x) = \overline{(X - \bar{X})^2}\\
+$$
+
+$$
 = \overline{X^2 - 2X\bar X + \bar X^2} \\
+$$
+
+$$
 = \overline{X^2} - 2\bar X^2 + \bar X^2 \\
+$$
+
+$$
 = \overline{X^2} - \bar X^2
 $$
-In other words, the variance is the amount that the average of the (data squared) differs from the (average of the data) squared.
+
+In other words, the variance is the amount that the mean of the squared data values differs from the squared mean. Since 
 
 #### Standard Deviation
 
 One limitation of the variance is that it squares the units of the data. So if our data is measured in seconds, the variance will be measured in square seconds. If our data is measured in meters, the variance will be measured in square meters. That can make the variance unintuitive. A solution is to take the square root of the variance, called the standard deviation, notated with a σ (lowercase sigma).
+
 $$
 \sigma = \sqrt{Var(X)}
 $$
+
 Or in Python:
 
 ```python

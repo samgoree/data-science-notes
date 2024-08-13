@@ -1,6 +1,11 @@
-# Interlude: Text Data
+---
+layout: post
+title:  "Interlude: Text is Data"
+number: 6.5
+---
 
-A big topic in data science that does not come up in traditional statistics is how to work with text as data. In this chapter, we will cover some basic text data analysis using Python tools. Along the way we will encounter some more general computer science ideas like loops and string manipulation.
+A big topic in data science that does not come up in traditional statistics is how to work with text as data. This is an interlude about the relationship between text and data.
+
 
 ## Text is Data
 

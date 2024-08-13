@@ -1,4 +1,8 @@
-# Chapter 6: Pandas
+---
+layout: post
+title:  "Chapter 6: Pandas"
+number: 6
+---
 
 In previous chapters, we have explored methods for data which is all of a uniform data type, either strings, integers or floats. In this chapter, we will introduce another key data science library: Pandas, which turns Python into a direct substitute for spreadsheet software like Microsoft Excel.
 
@@ -46,6 +50,7 @@ dtype: int64
 
 In this printout, there are two numbers on each line. The first is the index, which by default works just like a list or array index. The second are the actual values that we added to the series. At the bottom it tells us the data type, int64, or 64-bit integer.
 
+<<<<<<< HEAD
 We can access the index itself using `.index` and converting the result to a list:
 
 ````
@@ -664,4 +669,4 @@ dtype: float64
 
 And similar for the others.
 
-That's it for our first Pandas chapter! In chapter {{advanced_pandas}}, we will go into some of the advanced functionality that makes pandas an invaluable tool for data science.
+That's it for our first Pandas chapter! In chapter {{site.chapter_advanced_pandas}}, we will go into some of the advanced functionality that makes pandas an invaluable tool for data science.

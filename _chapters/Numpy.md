@@ -1,4 +1,8 @@
-# Chapter 3: Numpy
+---
+layout: post
+title:  "Chapter 3: Numpy"
+number: 3
+---
 
 This page describes the Python library Numpy, short for Numerical Python and usually pronounced "nuhm-pie." Numpy is a framework for numerical computing which allows Python programs to run much faster code from older C++ and Fortran libraries such as [lapack](https://netlib.org/lapack/) and [libfft](https://github.com/pyroesp/libFFT). which serves as the foundation for the entire Data Science Python Stack.
 
@@ -113,7 +117,7 @@ In computer science, we refer to a collection of programming tools that build on
 
 (Source: https://chris35wills.github.io/courses/pydata_stack/)
 
-You're already familiar with Python and Jupyter. IPython is a program that Jupyter uses to run your code interactively (that's why they're called IPython Notebooks, or .ipynb files). In this chapter, we are covering Numpy. In Chapter {{chapter_pandas}} we will talk about Pandas. In {{chapter_matplotlib}}, we will talk about Matplotlib and mention Seaborn. In {{chapter_regression}} we will use tools from Scipy and scikit-learn, and reference StatsModels.
+You're already familiar with Python and Jupyter. IPython is a program that Jupyter uses to run your code interactively (that's why they're called IPython Notebooks, or .ipynb files). In this chapter, we are covering Numpy. In Chapter {{site.chapter_pandas}} we will talk about Pandas. In {{site.chapter_matplotlib}}, we will talk about Matplotlib and mention Seaborn. In {{site.chapter_regression}} we will use tools from Scipy and scikit-learn, and reference StatsModels.
 
 ## Importing Numpy
 
@@ -608,15 +612,25 @@ Notice that division converts all the elements of the array into floats in order
 ### Dot Products in Numpy
 
 The multiplication symbol * performs vectorized multiplication:
+
 $$
 a = (a_1, a_2,...,a_n)\\
+$$
+
+ $$
 b = (b_1, b_2,...,b_n)\\
+$$
+
+$$
 a * b = (a_1 * b_1, a_2 * b_2, ..., a_n * b_n)
 $$
+
 In linear algebra, this is an unusual vector product. Mathematicians are more familiar with the "dot product" (also called scalar product or inner product):
+
 $$
 a \cdot b = a_1b_1 + a_2b_2 + ... + a_nb_n
 $$
+
 We can compute the dot product between two one-dimensional numpy arrays using the @ operator
 
 ```

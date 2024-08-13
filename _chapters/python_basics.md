@@ -1,10 +1,8 @@
 ---
 layout: post
-title:  "Jupyter and Python Basics"
-date: 2024-03-14
+title:  "Chapter 1: Jupyter and Python Basics"
+number: 1
 ---
-
-# Chapter 1: Jupyter and Python Basics
 
 This page describes the basics of Python programming in Jupyter notebooks.
 
@@ -137,7 +135,7 @@ a + 2
 
 These three lines of code are perfectly legal, and result in 7. In the first line, we create a variable `a` and set it equal to 1. In the second line, we replace the 1 with a 5. In the third line, we check whatever is in `a` and add 2 to it. Since the value of `a` was most recently set to 5, we find a 5 there and add 2 to it, resulting in 7.
 
-Python variables do not have to be one letter. In fact, we try to avoid single-letter variable names! Variables can contain any sequence of upper case letters, lower case letters, underscores (_) and numbers. They have to start with a letter and cannot use *reserved words* which mean something in the language such as `for`, `if`, `print`, `sum` or `input`. 
+Python variables do not have to be one letter. In fact, we try to avoid single-letter variable names! Variables can contain any sequence of upper case letters, lower case letters, underscores (\_) and numbers. They have to start with a letter and cannot use *reserved words* which mean something in the language such as `for`, `if`, `print`, `sum` or `input`. 
 
 <details><summary>Full list of reserved words</summary>
 <code>and

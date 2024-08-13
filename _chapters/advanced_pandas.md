@@ -1,10 +1,12 @@
-# Chapter 8: Advanced Pandas
-
-This chapter will introduce some advanced data manipulation techniques for Numpy and Pandas.
-
-## More Boolean Masking
+---
+layout: post
+title:  "Chapter 8: Advanced Pandas"
+number: 8
+---
 
 In Chapter {{Pandas}} we introduced Boolean masking for dataframes as a way 
+
+fancy indexing in numpy and pandas
 
 groupby
 

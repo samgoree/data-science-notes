@@ -1,10 +1,8 @@
 ---
 layout: post
-title:  "Lists and Dictionaries"
-date: 2024-03-14
+title:  "Chapter 2: Lists and Dictionaries"
+number: 2
 ---
-
-# Chapter 2: Lists and Dictionaries
 
 This page describes a key Python data structure: lists. After exploring lists, we will revisit strings and introduce another data structure: dictionaries.
 

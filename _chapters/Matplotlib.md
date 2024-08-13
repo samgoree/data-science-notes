@@ -1,4 +1,9 @@
-# Chapter 4: Matplotlib
+---
+layout: post
+title:  "Chapter 4: Matplotlib"
+number: 4
+---
+
 
 This page describes the Python library Matplotlib, short for "Matlab Plotting Library"and usually pronounced "mat plot lib." Matplotlib allows us to create data visualizations from our Python code.
 
@@ -426,7 +431,7 @@ plt.show()
 
 ![plot1](../assets/images/imshow3.png)
 
-As we will explore in Chapter {{images}}, a color photograph is typically stored as a 3D numpy array of shape (height, width, 3), where the 3 indicates three dimensions of color: red, green and blue. If you have an image file on your computer, you can read it in to Python using matplotlib's `plt.imread()` function. I'm going to demonstrate using this using [this photo of my pet rabbit, Cornelius](../../assets/images/test_image.jpg)
+As we will explore in Chapter {{images}}, a color photograph is typically stored as a 3D numpy array of shape (height, width, 3), where the 3 indicates three dimensions of color: red, green and blue. If you have an image file on your computer, you can read it in to Python using matplotlib's `plt.imread()` function. I'm going to demonstrate using this using [this photo of my pet rabbit, Cornelius](../assets/images/test_image.jpg)
 
 ```
 image = plt.imread('test_image.jpg')
