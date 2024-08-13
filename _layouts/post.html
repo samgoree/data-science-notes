@@ -19,9 +19,14 @@ layout: default
     {{ content }}
   </div>
 
-  {%- if site.disqus.shortname -%}
-    {%- include disqus_comments.html -%}
-  {%- endif -%}
+  <div class="next-prev">
+    <p style="text-align:left;">
+      <a href="{{ page.previous.url | relative_url }}">Previous Chapter</a>
+      <span style="float:right;">
+        <a href="{{ page.next.url | relative_url }}">Next Chapter</a>
+      </span>
+    </p>
+  </div>
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>

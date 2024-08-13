@@ -30,8 +30,18 @@ github_username:  samgoree
 # chapters
 chapter_jupyter: 1
 chapter_lists: 2
-chapter_numpy: 4
-chapter_strings: 3
+chapter_numpy: 3
+chapter_matplotlib: 4
+chapter_statistics: 5
+chapter_pandas: 6
+chapter_strings: 7
+chapter_advanced_pandas: 8
+
+
+collections:
+  chapters:
+    output: true
+    sort_by: number
 
 # Build settings
 theme: minima
