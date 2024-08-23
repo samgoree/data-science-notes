@@ -113,7 +113,7 @@ There are three ways of importing Python libraries. All of them use the `import`
 
 In computer science, we refer to a collection of programming tools that build on each other a "tech stack." In data science, we use the "Data Science Python" stack. This is a collection of open source Python libraries that build on one another.
 
-![the data science Python stack](C:\Users\samgo\data-science-notes\assets\images\data_science_python.png)
+![the data science Python stack](../../assets/images/data_science_python.png)
 
 (Source: https://chris35wills.github.io/courses/pydata_stack/)
 
@@ -546,8 +546,8 @@ If we want to load an array from a file there are also a couple ways we can do t
 
   ```python
   arr = np.array([[1, 0, 1],
-  				[0, 1, 0],
-  				[1, 0, 1]])
+                  [0, 1, 0],
+                  [1, 0, 1]])
   np.savetxt('myarr.txt', arr, delimiter=',', header='col1,col2,col3')
   np.save('myarr.npy', arr)
   ```

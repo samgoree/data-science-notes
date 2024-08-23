@@ -8,10 +8,8 @@ In Chapters {{site.chapter_numpy}} and {{site.chapter_pandas}}, we introduced Bo
 
 ## Fancy Indexing
 
+## Groupby
 
+## Merging and Joining tables
 
-groupby
-
-merge
-
-pivots
+## Pivots
