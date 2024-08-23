@@ -4,12 +4,12 @@ title:  "Chapter 8: Advanced Pandas"
 number: 8
 ---
 
-In Chapter {{Pandas}} we introduced Boolean masking for dataframes as a way 
+In Chapters {{site.chapter_numpy}} and {{site.chapter_pandas}}, we introduced Boolean masking for arrays and dataframes as a way to select specific rows for analysis. In this chapter, we will expand that concept of indexing and introduce several other ways to select, group and connect dataframes.
 
-fancy indexing in numpy and pandas
+## Fancy Indexing
 
-groupby
+## Groupby
 
-merge
+## Merging and Joining tables
 
-pivots
+## Pivots

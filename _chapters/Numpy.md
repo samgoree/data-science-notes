@@ -113,7 +113,7 @@ There are three ways of importing Python libraries. All of them use the `import`
 
 In computer science, we refer to a collection of programming tools that build on each other a "tech stack." In data science, we use the "Data Science Python" stack. This is a collection of open source Python libraries that build on one another.
 
-![the data science Python stack](C:\Users\samgo\data-science-notes\assets\images\data_science_python.png)
+![the data science Python stack](../../assets/images/data_science_python.png)
 
 (Source: https://chris35wills.github.io/courses/pydata_stack/)
 
@@ -427,7 +427,7 @@ three_dimensional_arr.reshape([2,2,2,-1])
 
 Out:
 
-```
+```python
 array([[[[14, 12, 20],
          [ 6, 11, 24]],
 
@@ -530,7 +530,7 @@ As we have seen, we can create numpy arrays from Python lists. There are several
 
 * `np.linspace(start, stop, num=50)`: Create an array which ranges from `start` to `stop` with `num` elements, spaced evenly or *linearly* (linspace, short for linear space). Unlike `arange`, `linspace` includes the `stop` value. The step size will be `stop - start / (num-1)`. For example:
 
-  ```
+  ```python
   ls = np.linspace(0, 10, 10)
   ls
   ```
@@ -574,12 +574,12 @@ If we want to load an array from a file there are also a couple ways we can do t
 
   For example:
 
-  ```
+  ```python
   arr = np.array([[1, 0, 1],
-  				[0, 1, 0],
-  				[1, 0, 1]])
-  arr.savetxt('myarr.txt', delimiter=',', header='col1,col2,col3')
-  arr.save('myarr.npy')
+                  [0, 1, 0],
+                  [1, 0, 1]])
+  np.savetxt('myarr.txt', arr, delimiter=',', header='col1,col2,col3')
+  np.save('myarr.npy', arr)
   ```
 
   The file `myarr.txt` now has the content:
@@ -592,6 +592,25 @@ If we want to load an array from a file there are also a couple ways we can do t
   ```
 
   And `myarr.npy` has the same content, though it is compressed into an unreadable binary file.
+
+  We can read a file formatted in this way using `loadtxt` and `load`, respectively:
+
+  ```python
+  newarr = np.loadtxt('myarr.txt', delimiter=',', skiprows=1)
+  newarr2 = np.load('myarr.npy')
+  newarr, newarr2
+  ```
+  Out:
+  ```
+  (array([[1., 0., 1.],
+        [0., 1., 0.],
+        [1., 0., 1.]]),
+   array([[1, 0, 1],
+          [0, 1, 0],
+          [1, 0, 1]]))
+  ```
+
+  The only difference is that the datatype is preserved in the binary file, while it is lost in plaintext.
 
 * `np.genfromtxt(fname, delimiter=None, skip_header=0, skip_footer=0, missing_values=None, filling_values=None, usecols=None)`: If you encounter a file that you want to read using numpy, but loadtxt is not working for some reason, you can use genfromtxt to handle any weirdnesses in the file. This function has many, many optional arguments. The most useful few are provided here:
   * `delimiter` specifies the delimiter to use. This can be any string. By default, it uses any whitespace as a delimiter.

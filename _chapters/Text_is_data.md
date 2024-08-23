@@ -25,8 +25,7 @@ Which are then converted into a binary string:
 
 The full table is shown below (reproduced from https://www.rapidtables.com/code/text/ascii-table.html):
 
-<button type="button" onClick="this.classList.toggle('active'); var content = this.nextElementSibling; if (content.style.display   === 'block') {content.style.display =   'none';} else {content.style.display = 'block';}">Show Table</button>
-
+<button type="button" onClick="this.classList.toggle('active'); var content = this.nextElementSibling; if (content.style.display   === 'block') {content.style.display = 'none';} else {content.style.display = 'block';}">Show Table</button>
 <div class="content" style="display: 'none';">
 <table>
 <thead style="display: table-header-group;">
