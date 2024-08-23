@@ -670,3 +670,17 @@ dtype: float64
 And similar for the others.
 
 That's it for our first Pandas chapter! In chapter {{site.chapter_advanced_pandas}}, we will go into some of the advanced functionality that makes pandas an invaluable tool for data science.
+
+### Other Useful Functions
+
+* `srs.unique()`: Get the unique elements of a series as a numpy array in order of appearance.
+
+  For example:
+
+  ```python
+  df['grade'].unique()
+  ```
+
+  Out: `array([85, 95, 88, 80])`
+
+* `srs.value_counts()`: Get the unique values 
