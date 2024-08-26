@@ -269,6 +269,36 @@ data[((data // 10) == 3)]
 
 Out: `array([30, 31, 32, 33, 34, 35, 36, 37, 38, 39])` (the same result)
 
+### Boolean Operators
+
+We can combine together two Booleans using a boolean operator. These are pairwise logical operators like "and" and "or". For example:
+
+```
+data = np.arange(100)
+mask = (data < 20) & (data % 3 == 0)
+data[mask]
+```
+
+Out: `array([ 0,  3,  6,  9, 12, 15, 18])` the values in data which are less than 20 and divisible by 3.
+
+There are four of these operators:
+
+* `&` is the "and" operator
+* `|` (the pipe key on your keyboard above enter) is the "or" operator
+* `~` (the tilde, above the tab key) is the "not" operator
+* `^` is the "exclusive or" operator
+
+We typically define these operations using a truth table:
+
+| `a`   | `b`   | `a & b` | `a | b` | `~a`  | `a ^ b` |
+| ----- | ----- | ------- | ------- | ----- | ------- |
+| False | False | False   | False   | True  | False   |
+| False | True  | False   | True    | True  | True    |
+| True  | False | False   | True    | False | True    |
+| True  | True  | True    | True    | False | False   |
+
+You can read this table by looking up the values of each variable in the first two columns and checking the output of the function in its column. For example, we can read that `False ^ True` results in `True` by looking in the second row, last column.
+
 ### Shape
 
 Just like we can use the `len()` function on lists to find their length, we can find the length of a Numpy array.
@@ -636,7 +666,7 @@ $$
 a = (a_1, a_2,...,a_n)\\
 $$
 
- $$
+$$
 b = (b_1, b_2,...,b_n)\\
 $$
 

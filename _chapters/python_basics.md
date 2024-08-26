@@ -33,7 +33,7 @@ If you want to use a data file in your code, you can either place it in that dir
 
 ### Using the Jupyter Interface
 
-To create a new notebook, navigate to the location on your computer you would like it to go and click New > Notebook in the top right corner. You should see something like this (minus the colored boxes).
+To create a new notebook, navigate to the location on your computer you would like it to go and click New > Python3 (ipykernel) in the top right corner. You should see something like this (minus the colored boxes).
 
 <img src="../assets/images/notebook.PNG" alt="jupyter notebook window"/>
 
