@@ -113,7 +113,7 @@ There are three ways of importing Python libraries. All of them use the `import`
 
 In computer science, we refer to a collection of programming tools that build on each other a "tech stack." In data science, we use the "Data Science Python" stack. This is a collection of open source Python libraries that build on one another.
 
-![the data science Python stack](../../assets/images/data_science_python.png)
+![the data science Python stack](../assets/images/data_science_python.png)
 
 (Source: https://chris35wills.github.io/courses/pydata_stack/)
 
