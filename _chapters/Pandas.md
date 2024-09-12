@@ -50,7 +50,6 @@ dtype: int64
 
 In this printout, there are two numbers on each line. The first is the index, which by default works just like a list or array index. The second are the actual values that we added to the series. At the bottom it tells us the data type, int64, or 64-bit integer.
 
-<<<<<<< HEAD
 We can access the index itself using `.index` and converting the result to a list:
 
 ````
@@ -673,9 +672,7 @@ That's it for our first Pandas chapter! In chapter {{site.chapter_advanced_panda
 
 ### Other Useful Functions
 
-* `srs.unique()`: Get the unique elements of a series as a numpy array in order of appearance.
-
-  For example:
+* `srs.unique()`: Get the unique elements of a series as a numpy array in order of appearance. For example:
 
   ```python
   df['grade'].unique()
@@ -683,4 +680,139 @@ That's it for our first Pandas chapter! In chapter {{site.chapter_advanced_panda
 
   Out: `array([85, 95, 88, 80])`
 
-* `srs.value_counts()`: Get the unique values 
+* `srs.value_counts()`: Get the unique values from the dataframe column with their counts as a Series. For example:
+
+  ```python
+  df['grade'].value_counts()
+  ```
+
+  Out:
+
+  ```
+  85    2
+  95    1
+  88    1
+  80    1
+  Name: grade, dtype: int64
+  ```
+
+  Notice that the index column is the grades, and the values are the counts. 85 has a value of 2 because it occurs twice in `df`.
+
+* `df.sort_values(column_name, ascending=True)`: Sort the values of the dataframe according to a specific column's values. If `ascending` is true (default), it will sort from smallest to largest. If it is False, it will sort from largest to smallest. For example:'
+
+  ```python
+  df.sort_values('age', ascending=False)
+  ```
+
+  Out:
+
+  ```
+   	name 	age grade
+  4 	Adam 	23 	80
+  3 	Natasha 22 	85
+  2 	Josh 	21 	88
+  0 	Sam 	20 	85
+  1 	Emma 	19 	95
+  ```
+
+  Notice that the index is reordered to stay matched with the rows.
+
+* `df.head(n)`: Get the first `n` rows of the dataframe based on the current ordering (not based on the index). For example:
+
+  ```python
+  df.head(2)
+  ```
+
+  Out:
+
+  ```
+  	name 	age grade
+  0 	Sam 	20 	85
+  1 	Emma 	19 	95
+  ```
+
+  This function is particularly useful in combination with `.sort_values()` as it can be used to get the row with the highest value in a particular column.
+
+## Missing Data
+
+A common problem you may encounter with Pandas is missing data. Consider this coffee survey. In a spreadsheet program, these look like blank cells:
+
+![image-20240912104855203](../assets/images/missing_data.png)
+
+But when you load this data into pandas, it turns into NaNs:
+
+![image-20240912105005484](../assets/images/nans.png)
+
+NaN is short for "not a number" as these cells do not contain data.
+
+If we try to work with a column that contains NaNs, we will end up with a result of NaN. For example:
+
+```
+np.sum(np.array([1,2,3,np.NaN]))
+```
+
+Out: `nan`
+
+Pandas is a little kinder than numpy in this respect, as of 2023 it will now ignore nans in summary statistics:
+
+```python
+pd.Series([1,2,3,np.NaN]).sum()
+```
+
+Out: `6.0`, but that could lead you towards false conclusions. For example:
+
+```python
+srs = pd.Series([1,2,3,np.NaN])
+print(srs.sum() / len(srs))
+print(srs.mean())
+```
+
+Out:
+
+```
+1.5
+2.0
+```
+
+We can check how much of our data is NaN by using `df.isna()`. This returns a dataframe full of booleans. For example, with the coffee dataset:
+
+![image-20240912112618968](../assets/images/isna.png)
+
+We can see how many nan values we have by column with `.sum()` or what fraction of values are nan with `.mean()`
+
+```python
+df.isna().sum()
+```
+
+Out:
+
+```
+Submission ID                                                 0
+What is your age?                                            31
+How many cups of coffee do you typically drink per day?      93
+Where do you typically drink coffee?                         70
+Where do you typically drink coffee? (At home)               67
+                                                           ... 
+Ethnicity/Race                                              624
+Ethnicity/Race (please specify)                            3937
+Employment Status                                           623
+Number of Children                                          636
+Political Affiliation                                       753
+Length: 113, dtype: int64
+```
+
+ There are a few ways we can deal with NaN values:
+
+* If you want to remove all the nans from a dataset, you can with `df.dropna(axis=0)`. By default, it will drop *rows* with missing values. If you want to drop columns with missing values, pass in `axis=1` as an argument. **This is usually not the best option! Dropping lots of data so your code works is a bad plan.**
+
+* If you want to replace all the NaN values with a default, e.g. 0, you can do `df.fillna(value)` and fill all nan values with a specific replacement. Some good options are either 0 or the mean of the column to avoid skewing any statistics.
+
+* If you have sequential data (e.g. a time series), it may make sense to *interpolate* values. Interpolation means drawing a function between two present values, and using the value of that function to fill in the missing values. For example, in this plot below, data is available on the integers (red dots) but missing in between. The blue lines interpolate between the red dots, giving us good guesses for those values.
+
+  ![230px-Interpolation_example_linear.svg-3891622913](../assets/images/interpolation.png)
+
+[Source](https://hr.wikipedia.org/wiki/Interpolacija)
+
+<details><summary>More about interpolation</summary>There are other, more sophisticated methods to fill in missing data using interpolation. Polynomial models (where you use a Nth degree curve of best fit found using several neighboring points) can be more accurate if you know something about the underlying time series function. If you don't know anything, using <a href="https://en.wikipedia.org/wiki/Kernel_smoother">kernel smoothing</a> is often a better choice. All these methods are beyond the scope of an introductory data science class, however.</details>
+
+This process is called *imputing* and is a major topic in statistics.
