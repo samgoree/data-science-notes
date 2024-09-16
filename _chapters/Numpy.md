@@ -456,7 +456,22 @@ In these types, the information capacity of the number is specified in *bits*. B
 
 ### Changing Array Types
 
-We can change 
+We can change the type of a numpy array using the `.astype(type)` method. The argument can either be a python type (e.g. `int`) or a numpy type, as a string (e.g. `'uint8'`). For example:
+
+```python
+  arr = np.arange(10.0)
+  print(arr)
+  arr = arr.astype(int)
+  print(arr)
+```
+
+Out:
+```
+[0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
+[0 1 2 3 4 5 6 7 8 9]
+```
+
+The floats were converted to ints.
 
 ## Ways to Create Numpy Arrays
 
