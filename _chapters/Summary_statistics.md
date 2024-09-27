@@ -262,6 +262,46 @@ Out:
 
 These are two equivalent ways to compute the standard deviation.
 
+### Covariance and Correlation
+
+What if instead of one set of numbers, we have two sets of numbers which are paired? e.g. the height (in cm) and total mass (g) of a bean plant.
+
+We can use a statistic to describe their relationship: covariance:
+$$
+Cov(X,Y) = \frac{1}{|X|} \sum\limits_{i=1}^{|X|}(X_i - \bar X)(Y_i - \bar Y)
+$$
+In other words, we take corresponding values in each dataset, measure their distances from their respective means, multiply those and take the average. The units of covariance are equal to the units of X times the units of Y, in this case cm * g. These units are unintuitive to interpret.
+
+To find a statistic which is easier to interpret, we divide by the highest possible covariance value: the product of the standard deviations. This yields the correlation, often called r:
+$$
+Corr(X,Y) = r_{X,Y} = \frac{Cov(X,Y)}{\sigma_X\sigma_Y}
+$$
+The correlation is very easy to interpret: it varies between 1 and -1. A correlation close to 1 means that high or low values of one variable occur in the same rows as high or low values of the other variable. A correlation close to -1 means the opposite: high or low values of one variable occur in the same rows as low or high values of the other variable. A correlation close to 0 means that neither pattern is present.
+
+In Numpy, there are functions for these two statistics, but they return two dimensional arrays:
+
+```  python
+X = [5,4,3,2,1]
+Y = [10,9,8,7,4]
+print(np.corrcoef(X,Y))
+print(np.cov(X,Y))
+```
+
+Out:
+
+```
+[[1.         0.96152395]
+ [0.96152395 1.        ]]
+[[2.5        3.5]
+ [3.5        5.3]]
+```
+
+Each value in the first array represents a possible correlation coefficient between the two variables: [0,0] is 1 meaning that the correlation between X and X is 1. [0,1] is 0.96 because X and Y have a correlation of 0.96. [1,0] is the same because correlation is commutative. [1,1] is 1 because the correlation between Y and Y is 1.
+
+The second array contains similar data: 2.5 is the variance of X and 5.3 is the variance of Y. 3.5 is their covariance.
+
+These arrays are called the *correlation matrix* and *covariance matrix* of the two dimensional dataset, and it is very useful for advanced data science to represent them as matrices.
+
 ## Random Numbers
 
 In daily speech, we often refer to things as "random" because they are arbitrary or erratic (e.g. "I put on a random shirt today" or "you said something so random"). In data science, we do not use the word random like that. When we say something is random, we mean that it is literally chosen *at random* using a totally unpredictable process like a die roll or coin toss.
