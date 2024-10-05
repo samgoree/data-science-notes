@@ -270,3 +270,63 @@ Out:
 ```
 
 Notice we now have a list of strings, instead of one string.
+
+### Looping Over Lists
+
+If we want to execute the same line of code on each element of a list (e.g. our `contents` list above, which contains several lines of a file) we can use a Python programming structure called a *for loop*. These loops are a major topic in computer science, but will only feature in data science here.
+
+Let's say we've read in the file above using readlines():
+
+```python
+with open('demo.txt') as f:
+    contents = f.readlines()
+```
+
+We can loop over that file like this:
+
+```python
+for line in contents:
+    print(line.split(' '))
+```
+
+Out: 
+
+```
+['This', 'is', 'a', 'text', 'file.']
+['It', 'contains', 'several', 'lines.']
+['This', 'last', 'line', 'contains', 'a', '\ttab', 'character.']
+```
+
+In other words, we went line by line: for each line, we call `.split(' ')` to split the line into words and then print to print it out. That is equivalent to the following:
+
+```python
+print(contents[0].split(' '))
+print(contents[1].split(' '))
+print(contents[2].split(' '))
+```
+
+But it's both shorter and much more elegant to use the for loop, especially if you're looping over a file with many lines or you don't know exactly how many lines the file has.
+
+### Looping over Lists of Files
+
+Another situation where we may want to use for loops is when we have multiple files and want to do something for each one. For example, let's say we have a list of text files, and want to count the number of times "Sam" occurs in each file:
+
+```python
+filenames = ['file1.txt', 'file2.txt', 'file3.txt', 'file4.txt', 'file5.txt']
+word_counts = []
+for filename in filenames:
+    with open(filename) as f:
+        text = f.read()
+    word_count = text.count('Sam')
+    word_counts.append(word_count)
+print(word_counts)
+```
+
+This code is quite long and possibly intimidating, but we analyze it line by line:
+
+* We have a list of filenames and an empty list called word_counts
+* We loop over the filenames:
+  * For each filename, we open the file and read it into the variable `text`
+  * Then we count the number of times the word "Sam" occurs and save that count to the variable `word_count`
+  * Then we append the value in `word_count` to the (previously empty) list `word_counts`
+* After looping over all the filenames, we print the data in `word_counts`. It will have five elements, since we ran the lines of code inside the loop five times.
