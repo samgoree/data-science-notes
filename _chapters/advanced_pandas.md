@@ -364,10 +364,275 @@ Note: Pivoting a table with duplicate keys (e.g. if there were two entries for A
 
 ## Pandas Dates and Times
 
+A common data type in tabular data is the "datetime" type: representing a specific date and time. Datetimes are notoriously difficult to work with: see this [list of falsehoods programmers believe about time](https://gist.github.com/timvisee/fcda9bbdff88d45cc9061606b4b923ca) for some examples of why.
+
+Pandas has resolved most of these issues in its `Timestamp` type, which represents a date and time in a particular time zone. It is based on the [Numpy `datetime64` type](https://numpy.org/doc/stable/reference/arrays.datetime.html).
+
+We can create Timestamps directly:
+
+```python
+pd.Timestamp(day=12, month=10, year=2024, hour=11, minute=27, second=25, tz='EST')
+```
+
+Out: `Timestamp('2024-10-12 11:27:25-0500', tz='EST')`.
+
+### Converting a String date or time column to Timestamps
+
+Let's say we have a column of date strings:
+
+```python
+dt_strings = pd.Series(['2017-08-01', '2017-08-15', '2017-09-01', '2017-09-15'])
+```
+
+If all of the strings are in a similar, commonplace datetime format, we can easily convert them to Timestamps using `pd.to_datetime()`:
+
+```python
+pd.to_datetime(dt_strings)
+```
+
+Out:
+
+```
+0   2017-08-01
+1   2017-08-15
+2   2017-09-01
+3   2017-09-15
+dtype: datetime64[ns]
+```
+
+Notice the dtype is datetime64. That means Pandas is storing these values as Timestamps, stored using a 64 bit integer counting the number of milliseconds between that date and 12 AM GMT on January 1st, 1970 (the ["Unix Epoch"](https://en.wikipedia.org/wiki/Unix_time)).
+
+Sometimes, datetimes will be encoded differently in your data table. For example, they may be presented in the European Day/Month/Year format:
+
+```python
+dt_strings = pd.Series(['01/08/2017', '15/08/2017', '01/09/2017', '15/09/2017'])
+```
+
+If we just try to use `to_datetime` to parse these, we end up with wrong answers:
+
+```
+0   2017-01-08
+1   2017-08-15
+2   2017-01-09
+3   2017-09-15
+dtype: datetime64[ns]
+```
+
+It should be August 1st and September 1st, not January 8th and 9th.
+
+To fix this problem we need to specify a *format string*. This is a string specifying where each bit of datetime information is in the string. For example, the format string `'%d/%m/%Y'` uses three directives: `%d` indicates where the day number is, `%m` indicates where the month number is and `%Y` indicates where the four digit year number is. We can pass this format string into `to_datetime`:
+
+```
+dates = pd.to_datetime(dt_strings, format='%d/%m/%Y')
+dates
+```
+
+```
+0   2017-08-01
+1   2017-08-15
+2   2017-09-01
+3   2017-09-15
+dtype: datetime64[ns]
+```
+
+You can see the full list of datetime directives [here](https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior).
+
+### Accessing the Parts of a Timestamp
+
+We can access the parts of a single Timestamp object using properties with intuitive names:
+
+```python
+dates[0].month
+```
+
+Out: `8`
+
+```python
+dates[1].day
+```
+
+Out: `15`
+
+Other options include: `hour`, `minute`, `second`, `year` and `tz`.
+
+These properties cause errors, however, if we use them on the Series as a whole. Instead , if we want to get the parts of *every* Timestamp in a Series, we have to use the `.dt` property first:
+
+```python
+dates.dt.month
+```
+
+Out:
+
+```
+0    8
+1    8
+2    9
+3    9
+dtype: int64
+```
 
 
-## Merging and Joining tables
 
+### Working with Timedeltas
 
+Sometimes your analysis will involve differences between times, e.g. "find 911 calls which happened within one day of Thanksgiving." We can do this sort of analysis using Timedeltas, which store differences between Timestamps.
 
-## 
+For example:
+
+```python
+timediff = dates - pd.Timestamp(day=1, month=7, year=2017)
+timediff
+```
+
+Out:
+
+```
+0   31 days
+1   45 days
+2   62 days
+3   76 days
+dtype: timedelta64[ns]
+```
+
+We can also create timedeltas directly:
+
+```python
+sixty_days = pd.Timedelta(days=60)
+sixty_days
+```
+
+Out: `Timedelta('60 days 00:00:00')`
+
+We can also do boolean operations on timedeltas:
+
+```python
+timediff > sixty_days
+```
+
+Out:
+
+```
+0    False
+1    False
+2     True
+3     True
+dtype: bool
+```
+
+### Using Datetimes as Indexes
+
+We can also set the index of a dataframe to a datetime column. That allows us to index and slice the dataframe using datetimes:
+
+```python
+df = pd.DataFrame({'dates': ["2011-01-02", "2011-01-05", "2011-01-07", "2011-01-08", "2011-01-10", "2011-01-12"],
+              'sales': [2,4,12,35,8,14]})
+df['dates'] = pd.to_datetime(df['dates'])
+df = df.set_index('dates')
+df
+```
+
+Out:
+
+```
+            sales
+dates
+2011-01-02       2
+2011-01-05       4
+2011-01-07      12
+2011-01-08      35
+2011-01-10       8
+2011-01-12      14
+```
+
+Now we can slice the dataframe using dates:
+
+```python
+ start = pd.to_datetime("2011-01-05")
+ end = pd.to_datetime("2011-01-10")
+ df.loc[start:end]
+```
+
+Out:
+
+```
+            sales
+dates
+2011-01-05       4
+2011-01-07      12
+2011-01-08      35
+2011-01-10       8
+```
+
+Datetimes also work well when put into Matplotlib:
+
+```
+plt.plot(df.index, df['sales'])
+```
+
+![](..\assets\images\datetimes.png)
+
+## Joining Tables
+
+Another common situation in data science is that we have data in multiple different files or dataframes and need to do analysis that combines them. This process is called "joining" or "merging" tables.
+
+The simplest way to carry out this operation, assuming you have a column in common between the tables, is using `pd.merge`:
+
+```python
+df1 = pd.DataFrame({
+	'name': ['Alice', 'Bob', 'Carol', 'Dave', 'Ethel'],
+	'age': [24, 60, 54, 45, 70]
+})
+
+df2 = pd.DataFrame({
+	'name': ['Alice', 'Alice', 'Bob', 'Ethel', 'Dave', 'Fran'],
+	'expense': [20,40,25,35,40,10]
+})
+
+pd.merge(df1, df2)
+```
+
+Out:
+
+```
+    name  age  expense
+0  Alice   24       20
+1  Alice   24       40
+2    Bob   60       25
+3   Dave   45       40
+4  Ethel   70       35
+```
+
+Notice that Alice's age is duplicated because there are two expense rows with a name of "Alice". Carol is also not present, as Carol does not have data in df2. Similarly, Fran is not present, as she does not have data in df1.
+
+We describe this merge as an "inner join on the name column." It is "on" the name column because we use name to match rows between the tables. It is an "inner" join because we are taking the set intersection between the two name columns. There are three other kinds of joins:
+
+<img src="..\assets\images\pandas-dataframe-join-311790591.png" alt="pandas-dataframe-join-311790591" style="zoom: 33%;" />
+
+Image from https://www.analyticsvidhya.com/blog/2021/06/join-the-dataframes-like-sql-tables-in-python-using-pandas/
+
+We can customize the kind of join we are doing:
+
+```python
+pd.merge(df1, df2, left_on='name', right_on='name', how='inner')
+```
+
+This will produce the same result, but we can change the columns that we join on in the left and right dataframe by changing left_on and right_on. We can also change the kind of join with the "how" argument. If, for example, we used an outer join:
+
+```python
+pd.merge(df1, df2, left_on='name', right_on='name', how='outer')
+```
+
+Out:
+
+```
+    name   age  expense
+0  Alice  24.0     20.0
+1  Alice  24.0     40.0
+2    Bob  60.0     25.0
+3  Carol  54.0      NaN
+4   Dave  45.0     40.0
+5  Ethel  70.0     35.0
+6   Fran   NaN     10.0
+```
+
+When there is no data associated with a given value in the column, Pandas will fill in the missing values with NaN ("not a number"). See Chapter 6 for information on what to do with NaNs.
