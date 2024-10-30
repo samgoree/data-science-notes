@@ -185,9 +185,30 @@ We call lines of code that are easy to interpret "self-documenting" since they d
 
 ## Comments
 
-Sometimes, though, code is not self-documenting. Then you have to document what it does. Data scientists typically write documentation through a combination of Markdown cells in our notebooks and comments in our code. Typically, we put big-picture documentation in Markdown cells, since we expect anyone reading our analysis later on to read them. For example, if you're using a specific model to analyze your data, you should have a Markdown cell explaining 
+Sometimes, though, code is not self-documenting. Then you have to document what it does. Data scientists typically write documentation through a combination of Markdown cells in our notebooks and comments in our code. 
 
-There are two ways to write comments
+Typically, we put big-picture documentation in Markdown cells, since we expect anyone reading our analysis later on to read them. For example, if you're using a specific model to analyze your data, you should have a Markdown cell explaining what that model is and why you're using it.
+
+We then put more specific explanations as comments in Python cells. There are two ways to write comments in Python cells.
+
+* Single-line comments are written with the `#` symbol. For example:
+
+  ```python
+  # set x to 5
+  x = 5
+  print(x + 2) # should print 7
+  ```
+
+* Multi-line comments are written with triple quotes. For example:
+
+  ```python
+  """
+  This is a multi-line comment.
+  It contains more complex information about a section of code.
+  """
+  ```
+
+Typically, single line comments accompany specific lines of code that need explanation, while multi-line comments explain more complex code snippets, like custom functions. We won't be writing complex code in this class, but it is good to know how these comments work if you get further into data science.
 
 ## Functions
 
