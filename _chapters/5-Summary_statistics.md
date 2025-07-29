@@ -308,6 +308,14 @@ The second array contains similar data: 2.5 is the variance of X and 5.3 is the 
 
 These arrays are called the *correlation matrix* and *covariance matrix* of the two dimensional dataset, and it is very useful for advanced data science to represent them as matrices.
 
+#### Side Note: Correlation is not Causation!
+
+When looking at two columns of a dataset, we may notice that the correlation between the two is high. Students will often jump to conclusions and claim that an increase in one of those columns *causes* the other to increase. This is not always true, and is a common logical fallacy.
+
+For example, we can construct a dataset that contains information about ice cream sales and shark attacks in each month of the year. If we do, we will see that the two numbers are highly correlated. But ice cream sales do not cause shark attacks. The two variables are entirely unrelated, but they both  increase when the temperature is high, so they are correlated. In this situation, we call temperature a *confounding variable*.
+
+Actually *proving* a causal relationship between two variables is quite difficult. Generally, you have to conduct a controlled experiment and rule out confounding variables and alternative explanations. In data science, we work mostly with observational data (as opposed to experimental data), and thus usually will not make claims about the causes of certain patterns.
+
 ## Random Numbers
 
 In daily speech, we often refer to things as "random" because they are arbitrary or erratic (e.g. "I put on a random shirt today" or "you said something so random"). In data science, we do not use the word random like that. When we say something is random, we mean that it is literally chosen *at random* using a totally unpredictable process like a die roll or coin toss.

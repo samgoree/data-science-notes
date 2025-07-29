@@ -9,7 +9,7 @@ In Chapter {{chapter_statistics}}, we encountered summary statistics such as mea
 
 ## Sampling
 
-In statistics (and data science), we are generally interested in knowing things about populations. A *population* is a large group of individuals in the world. These individuals can be people, but they can also be other things, for example animals, plants, businesses or locations. Something we may want to know is the average age of people in Europe. For that, the population is "people in Europe", the metric we are investigating is age and the statistic is the average.
+In statistics (and data science), we are generally interested in knowing things about populations. A *population* is a large group of individual people or things in the world. Something we may want to know is the average age of people in Europe. For that, the population is "people in Europe", the variable we are investigating is age and the statistic is the average. Alternatively, we may want to know the correlation in European cities between population and cost of housing. In that case, even though "population" is one of the variables, the statistical population is "cities in Europe," the variables we are investigating are population and cost of housing and the statistic is the correlation.
 
 Generally, there are two types of datasets that we can collect about a population. A *census* is a complete dataset, which contains data about every individual in a population. A *sample* is a subset of that population, containing some, but not all, of the individuals. A *random sample* is a sample where each individual in the sample has the same chance of being chosen for the sample. A *nonrandom sample* is a sample where some individuals are more likely to be chosen for the sample than others.
 
@@ -142,13 +142,19 @@ One of the most useful probability density functions in data science is the norm
 
 ![](../assets/images/random2.png)
 
-Normal distributions come up all over statistics because of a key result called the *central limit theorem*: the sum of many independent and identically distributed random variables is normally distributed. In practice what that means is that statisticians can assume that all sorts of continuous random variables are normally distributed without being too wrong.
+Normal distributions come up all over statistics because of a key result called the *central limit theorem*: the sum of many independent and identically distributed (iid) random variables is normally distributed. In practice what that means is that statisticians can usually assume that all sorts of continuous random variables are normally distributed, because their values are the sum of many iid random variables.
 
 The actual functional form that produces this curve is a little complicated:
 $$
 \mathcal{N}(x;\mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{- \frac{(x - \mu)^2}{2\sigma^2}}
 $$
-The function contains many unusual symbols, such as the script N, semicolon, square root symbol, numbers pi and e and variables x, mu and sigma. The semicolon is just notation, specifying that two of the parameters of the function are shape parameters ("the normal distribution value for x with mean mu and standard deviation sigma is..."). Mu (μ) specifies the center of the distribution and Sigma (σ) squared controls the width of the curve. X is the actual input to the function, and N(x) is the height of the curve at point x on the x-axis.
+The function contains many unusual symbols: 
+
+* The script N is the name of our function. N(x) is the height of the curve at point x on the x-axis.
+* The semicolon is just notation, specifying that two of the parameters of the function are shape parameters ("the normal distribution value for x with mean mu and standard deviation sigma is..."). 
+* Mu (μ) is a parameter which specifies the center of the distribution.
+* Sigma (σ) squared is a parameter that controls the width of the curve. We write it as "sigma squared" rather than giving it its own variable name for historical reasons.
+* X is the actual input to the function.
 
 Some things that you can prove about the normal distribution using calculus:
 
@@ -280,4 +286,4 @@ The interpretation of these values is similar to the one-sample T-test.
 
 ### Conclusion
 
-This chapter has provided a brief overview of the topic of statistical inference. The point of studying this topic in a data science class is to give you a taste of the kinds of questions that statisticians think about, not to give a full training in statistics. Hypothesis testing in particular is a complicated topic which is highly relevant to every scientific discipline. Future scientists should make sure to take a course (such as Stonehill's MTH 225) dedicated to understanding it.
+This chapter has provided a brief introduction to the topic of statistical inference. The point of studying this topic in a data science class is to give you a taste of the kinds of questions that statisticians think about, not to give a full training in statistics. Hypothesis testing in particular is a complicated topic which is highly relevant to every scientific discipline. Future scientists should make sure to take a course (such as Stonehill's MTH 225) dedicated to understanding it.

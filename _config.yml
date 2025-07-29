@@ -38,6 +38,7 @@ chapter_strings: 7
 chapter_advanced_pandas: 8
 chapter_inference: 9
 chapter_regression: 10
+chapter_machinelearning: 11
 
 
 collections:
