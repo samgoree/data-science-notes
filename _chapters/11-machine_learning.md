@@ -13,7 +13,7 @@ Sometimes, we want to make a prediction which is not a continuous value, but a d
 
 As a simple example problem, let's say we have four variables describing the weather, and want to predict another variable: whether it is a good day to play tennis. We have a dataset of 13 observations of these variables, and want to build a predictive model to predict whether it is a good day to play tennis in general based on the weather.
 
-<img src="../assets/images/tennis.png"/>
+<img src="../../assets/images/tennis.png"/>
 
 ## Evaluating Classification
 
@@ -89,7 +89,7 @@ Effectively, the thing that we want is a series of "if-then-else" statements abo
 
 Computer scientists have developed such an algorithm. It produces groups of decision rules organized into a tree shape:
 
-<img src="../assets/images/tennis-tree.png"/>
+<img src="../../assets/images/tennis-tree.png"/>
 
 In computer science, we call shapes like this "trees" since they form branches.
 
@@ -164,7 +164,7 @@ What we need for this model is a function that turns the output of linear regres
 $$
 \text{Sigmoid}(x) = \frac{1}{1+e^{-x}}
 $$
-![](../../assets/images/sigmoid.png)
+![](../../../assets/images/sigmoid.png)
 
 Notice this function starts at 0 for very large negative numbers and goes to 1 for very large positive numbers. The boundary between these two extremes happens smoothly, centered around 0. We can change the exponent in the denominator to vary the location and steepness of the boundary.
 $$

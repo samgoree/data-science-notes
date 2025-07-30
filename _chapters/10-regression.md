@@ -16,13 +16,13 @@ $$
 $$
 Here, the hat indicates that y is a prediction of the true y. X is a random variable while m and b are parameters that we have to estimate based on a dataset consisting of n x-y pairs. Estimating these parameters based on data means asking: what is the line of best fit?
 
-<img src="../assets/images/linear_regression1.png"/>  <img src="../assets/images/linear_regression2.png"/><img src="../assets/images/linear_regression3.png"/>    
+<img src="../../assets/images/linear_regression1.png"/>  <img src="../../assets/images/linear_regression2.png"/><img src="../../assets/images/linear_regression3.png"/>    
 
 Which of these do you think is the best fit for the data shown? If you said the first one, statisticians would agree with you.
 
 We can formalize the idea of "goodness of fit" using a quantitative measure called a loss function. In this case, the measure statisticians use as their loss function is the sum of squared error between the prediction (the line) and the true values (the dots). We can draw those differences, called "residuals," as lines on the plot:
 
-<img src="../assets/images/linear_regression4.png"/>  <img src="../assets/images/linear_regression5.png"/><img src="../assets/images/linear_regression6.png"/>    
+<img src="../../assets/images/linear_regression4.png"/>  <img src="../../assets/images/linear_regression5.png"/><img src="../../assets/images/linear_regression6.png"/>    
 
 Now it is clearest that the best line is the one that has the smallest length residuals. This problem formulation is called "Ordinary Least Squares" linear regression. The term regression is often a little intimidating for students, but it just means "going back" since regression explains variance in an effect variable (y) by tracing that variance back to a cause variable (x).
 
@@ -118,7 +118,7 @@ plt.show()
 
 
 
-<img src="../assets/images/polynomial1.png"/>
+<img src="../../assets/images/polynomial1.png"/>
 
 We could try applying linear regression to this dataset, but we immediately see a problem: the line becomes less accurate towards the start and end of the range of X values, indicating that the dataset is *nonlinear*, breaking our assumption of linearity.
 
@@ -133,7 +133,7 @@ plt.show()
 
 
 
-<img src="../assets/images/polynomial2.png"/>
+<img src="../../assets/images/polynomial2.png"/>
 
 So something that we can do is add another column to the dataset derived from the x value.
 
@@ -156,7 +156,7 @@ plt.show()
 
 In this code, we use `np.stack` which "stacks" two one dimensional arrays on top of each other in a new dimension. By specifying the axis as -1, we make sure the two arrays are stacked side by side as columns, rather than one above the other as rows.
 
-<img src="../assets/images/polynomial3.png"/>
+<img src="../../assets/images/polynomial3.png"/>
 
 Notice that by adding x squared as a second x variable, we have effectively used multiple regression to fit the polynomial
 $$
@@ -166,29 +166,29 @@ to our data.
 
 But why stop there? We could add an x cubed term and fit a degree 3 polynomial:
 
-<img src="../assets/images/polynomial4.png"/>
+<img src="../../assets/images/polynomial4.png"/>
 
 Or even fit a degree 10 polynomial!
 
-<img src="../assets/images/polynomial5.png"/>
+<img src="../../assets/images/polynomial5.png"/>
 
 Which of these models is best?
 
 If our only goal is minimizing the error, the model with as many terms as possible is best. But in data science, our goal is usually not minimizing the error, but modeling a real relationship in the world. As a result, we need some way to test whether our model actually generalizes or not. Data scientists typically test generalization by splitting the data into two groups: a training set and a testing set. The training set is used to fit the model, while the testing set is used to evaluate whether or not the model is *overfit* to the training data, meaning that it is too close to the training data and 
 
-<img src="../assets/images/polynomial6.png"/>
+<img src="../../assets/images/polynomial6.png"/>
 
 As you can see, the test set is another dataset taken from the same distribution as the training set. When we evaluate a good model, performance will be similar on the two:
 
-<img src="../assets/images/polynomial9.png"/>
+<img src="../../assets/images/polynomial9.png"/>
 
 But when we evaluate an overfit model, performance will be much better on the training set than the test set:
 
-<img src="../assets/images/polynomial7.png"/>
+<img src="../../assets/images/polynomial7.png"/>
 
 We can quantify this principle by plotting the training set and test set error vs. the degree of the model:
 
-<img src="../assets/images/polynomial8.png"/>
+<img src="../../assets/images/polynomial8.png"/>
 
 From this plot, we see that the test error is lowest when the model has degree 2, which makes sense because the data represents the diameter and area of a circle, which you probably know from geometry are connected by the equation:
 $$
