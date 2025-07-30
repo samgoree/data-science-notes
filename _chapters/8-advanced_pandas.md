@@ -269,7 +269,7 @@ In other words, we've split the data up by value in the column `key` and then su
 
 The most helpful way to understand this analysis is through this figure from Wes McKinney's book:
 
-![img](../assets/images/groupby.png)
+![img](../../assets/images/groupby.png)
 
 We can also use a Python structure called a *for loop* to run code on each group:
 

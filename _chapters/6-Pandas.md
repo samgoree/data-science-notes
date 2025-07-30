@@ -737,11 +737,11 @@ That's it for our first Pandas chapter! In chapter {{site.chapter_advanced_panda
 
 A common problem you may encounter with Pandas is missing data. Consider this coffee survey. In a spreadsheet program, these look like blank cells:
 
-![image-20240912104855203](../assets/images/missing_data.png)
+![image-20240912104855203](../../assets/images/missing_data.png)
 
 But when you load this data into pandas, it turns into NaNs:
 
-![image-20240912105005484](../assets/images/nans.png)
+![image-20240912105005484](../../assets/images/nans.png)
 
 NaN is short for "not a number" as these cells do not contain data.
 
@@ -776,7 +776,7 @@ Out:
 
 We can check how much of our data is NaN by using `df.isna()`. This returns a dataframe full of booleans. For example, with the coffee dataset:
 
-![image-20240912112618968](../assets/images/isna.png)
+![image-20240912112618968](../../assets/images/isna.png)
 
 We can see how many nan values we have by column with `.sum()` or what fraction of values are nan with `.mean()`
 
@@ -809,7 +809,7 @@ Length: 113, dtype: int64
 
 * If you have sequential data (e.g. a time series), it may make sense to *interpolate* values. Interpolation means drawing a function between two present values, and using the value of that function to fill in the missing values. For example, in this plot below, data is available on the integers (red dots) but missing in between. The blue lines interpolate between the red dots, giving us good guesses for those values.
 
-  ![230px-Interpolation_example_linear.svg-3891622913](../assets/images/interpolation.png)
+  ![230px-Interpolation_example_linear.svg-3891622913](../../assets/images/interpolation.png)
 
 [Source](https://hr.wikipedia.org/wiki/Interpolacija)
 

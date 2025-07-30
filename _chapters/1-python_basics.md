@@ -25,7 +25,7 @@ Jupyter is run using a client-server model. That means that you have to run two 
 
 While Jupyter is viewed through a web browser, it is not a website! It is actually running locally on your computer, so you can use it when you're not otherwise connected to the internet. Opening Jupyter will land you on this page, which gives you a view of your filesystem:
 
-![](../assets/images/jupyter.png)
+![](../../assets/images/jupyter.png)
 
 This is my home directory. On a Mac computer it is located at `/Users/yourusername/` where yourusername is your user name on the computer. On a windows computer, it would be at `C:/users/yourusername/`. I recommend creating a folder for content related to data science. Click New > Folder to create a new folder, then scroll down and check the box next to "Untitled Folder", then click "Rename" at the top and type "DSC105" (or whatever name you want) into the text box.
 
@@ -35,7 +35,7 @@ If you want to use a data file in your code, you can either place it in that dir
 
 To create a new notebook, navigate to the location on your computer you would like it to go and click New > Python3 (ipykernel) in the top right corner. You should see something like this (minus the colored boxes).
 
-<img src="../assets/images/notebook.PNG" alt="jupyter notebook window"/>
+<img src="../../assets/images/notebook.PNG" alt="jupyter notebook window"/>
 
 There are a few things to learn about this interface.
 
@@ -43,7 +43,7 @@ There are a few things to learn about this interface.
 
 2. When you run the cell, it will create a new code cell below it. You can also create a new cell by pressing the + button (box 2). Try typing hello. This will cause an error:
 
-   ![image-20240602113032650](../assets/images/error.png)
+   ![image-20240602113032650](../../assets/images/error.png)
 
    You will become very familiar with Python error messages like this one. Errors are a natural part of programming, and in general they do not mean you are wrong or bad, they usually mean you typed something slightly wrong or one of your assumptions was wrong. Error messages like this one give us a lot of useful information:
 

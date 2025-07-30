@@ -48,7 +48,7 @@ data = [1,2,4,2,1]
 plt.plot(data)
 ```
 
-![plot1](../assets/images/plot1.png)
+![plot1](../../assets/images/plot1.png)
 
 Matplotlib identified points on a 2D coordinate plane and connected them with straight blue lines. The X coordinates of those points were assumed to be integers 0 through 4 and the data was used for the Y coordinates.
 
@@ -61,7 +61,7 @@ y = [1,2,4,2,1]
 plt.plot(x, y)
 ```
 
-![plot1](../assets/images/plot2.png)
+![plot1](../../assets/images/plot2.png)
 
 Now that we have specified both the X and Y coordinates, matplotlib simply connects the dots: from (1,1) to (4,2) to (2,4) to (5,2) to (0,1).
 
@@ -78,7 +78,7 @@ y = -x**2 + 3 * x + 4
 plt.plot(x,y)
 ```
 
-![plot1](../assets/images/plot6.png)
+![plot1](../../assets/images/plot6.png)
 
 ### Labeling the Axes
 
@@ -91,7 +91,7 @@ temps = [66, 60, 55, 57, 40, 42, 38]
 plt.plot(temps)
 ```
 
-![plot1](../assets/images/plot3.png)
+![plot1](../../assets/images/plot3.png)
 
 If we came back to this plot after a month, it would be hard to remember what it means. To avoid that problem, we label our axes:
 
@@ -102,7 +102,7 @@ plt.xlabel('Day of the Week')
 plt.ylabel('Temperature (F)')
 ```
 
-![plot1](../assets/images/plot4.png)
+![plot1](../../assets/images/plot4.png)
 
 The xlabel function set the value of the x axis label while the ylabel function set the value of the y axis label. Now our plot is much easier to interpret.
 
@@ -116,7 +116,7 @@ plt.ylabel('Temperature (F)')
 plt.title('Daily Temperatures This Week')
 ```
 
-![plot1](../assets/images/plot5.png)
+![plot1](../../assets/images/plot5.png)
 
 ### Changing Axis Limits and Ticks
 
@@ -131,7 +131,7 @@ plt.title('Daily Temperatures This Week')
 plt.ylim(30,90)
 ```
 
-![plot1](../assets/images/plot7.png)
+![plot1](../../assets/images/plot7.png)
 
 Sometimes, the numerical ticks are difficult to interpret. For example, in our temperature plot, is day 0 Monday or Sunday? Additionally, sometimes the automatic ticks are at confusing intervals. To remedy these problems, we can set the tick positions and tick labels using `plt.xticks(ticks, labels)` and `plt.yticks(ticks, labels)`. For example:
 
@@ -146,7 +146,7 @@ plt.xticks(range(7), days)
 plt.yticks([40,50,60,70])
 ```
 
-![plot1](../assets/images/plot8.png)
+![plot1](../../assets/images/plot8.png)
 
 If we want to turn the axes off entirely, we can do so with `plt.axis('off')`. That removes the black box around the plot, the axis labels, the ticks and the tick labels.
 
@@ -166,7 +166,7 @@ plt.xticks(range(7), days)
 plt.yticks([40,50,60,70])
 ```
 
-![plot1](../assets/images/plot9.png)
+![plot1](../../assets/images/plot9.png)
 
 ### Adding a Legend
 
@@ -187,7 +187,7 @@ plt.yticks([40,50,60,70])
 plt.legend()
 ```
 
-![plot1](../assets/images/plot10.png)
+![plot1](../../assets/images/plot10.png)
 
 The two plots show up in different colors according to matplotlib's default color palette, and those colors are used in the legend to distinguish them. The labels come from each call to `plt.plot`. For more information on colors, see the section on colors below.
 
@@ -199,7 +199,7 @@ The `plt.subplots` function allows us to set the figsize, but it's intended purp
 fig, ax = plt.subplots(2, 3)
 ```
 
-![plot1](../assets/images/multi.png)
+![plot1](../../assets/images/multi.png)
 
 Notice how there are six subplots, two rows and three columns. Each subplot has its own axes. Also notice how the function has two return values, which are conventionally called `fig` and `ax`. `Fig` is the `Figure` object holding the entire plot. `ax` is a 2D numpy array of `Axes` objects, one for each axis, in this case a (2,3) array. We can access these separate axes by indexing ax and using it like plt. For example:
 
@@ -209,7 +209,7 @@ ax[0,2].plot([2,3,5])
 ax[0,1].axis('off')
 ```
 
-![plot1](../assets/images/multi2.png)
+![plot1](../../assets/images/multi2.png)
 
 Notice how we disabled the axis for the axes at (0,1) and added a plot to the axes at (0,2) based on which elements of `ax` we used in place of `plt`.
 
@@ -272,7 +272,7 @@ y = [2,2,3,1]
 plt.scatter(x,y)
 ```
 
-![plot1](../assets/images/scatter1.png)
+![plot1](../../assets/images/scatter1.png)
 
 We can provide additional arguments which change the actual marks used to plot the points. s and c allow us to encode data into the size and color of the points, while marker allows us to set the marker symbol. By default, the marker symbol is a filled circle, but it can be set to other symbols as well. For example:
 
@@ -284,7 +284,7 @@ s = [8,16,32,64]
 plt.scatter(x,y,s,c)
 ```
 
-![plot1](../assets/images/scatter2.png)
+![plot1](../../assets/images/scatter2.png)
 
 Notice how the size of the marker doubles each time, and the color changes from purple to yellow. Since the provided colors are scalars, they are mapped to colors using a *colormap*. See the section below on colormaps for more information.
 
@@ -303,7 +303,7 @@ plt.ylabel('People')
 plt.xlabel('Colors')
 ```
 
-![plot1](../assets/images/bar1.png)
+![plot1](../../assets/images/bar1.png)
 
 Sometimes you have many 
 
@@ -316,7 +316,7 @@ data = [1,1,2,2,3,4,4,5,5,6,7,8,8,8,8,8,8,8,9,9,10,15,20]
 plt.hist(data)
 ```
 
-![plot1](../assets/images/hist1.png)
+![plot1](../../assets/images/hist1.png)
 
 `plt.hist` chooses bins automatically by splitting the data range into tenths. If we look at the values of `bins` that it returns, we can see the bin boundaries:
 
@@ -340,7 +340,7 @@ counts, bins, plot = plt.hist(data, bins=19)
 plt.show()
 ```
 
-![plot1](../assets/images/hist2.png)
+![plot1](../../assets/images/hist2.png)
 
 Or we could choose bins which are not all the same size:
 
@@ -350,7 +350,7 @@ counts, bins, plot = plt.hist(data, bins=[1,4,8,12,20])
 plt.show()
 ```
 
-![plot1](../assets/images/hist3.png)
+![plot1](../../assets/images/hist3.png)
 
 Now, there are four bins. (1,2,3) go in one bin, (4,5,6,7) go in another, (8,9,10,11) go in a third and (12,13,14,15,16,17,18,19,20) go in another.
 
@@ -363,7 +363,7 @@ data = [1,2,3, 4,4,5, 6,7,9, 10,10,11]
 plt.boxplot(data)
 ```
 
-![plot1](../assets/images/box1.png)
+![plot1](../../assets/images/box1.png)
 
 In the code above, I have separated the data list visually into quartiles. The orange line in the plot shows the *median* of the data, halfway between the two middle elements of 5 and 6. The box shows the first and third quartiles at just before 4 and just after 9, respectively. The whiskers, or vertical lines, show the range of the data, from 1 to 11. This plot shows us, at a glance, that half of the data occurs within the box and half occurs outside it.
 
@@ -376,7 +376,7 @@ plt.boxplot([data_a, data_b])
 plt.xticks([1,2], ['Group A', 'Group B'])
 ```
 
-![plot1](../assets/images/box2.png)
+![plot1](../../assets/images/box2.png)
 
 Now it is clear that the two datasets have different distributions, despite having different numbers of points and the same range. Specifically, Group B has more points between 8 and 10 than Group A, putting its median and first quartile higher.
 
@@ -395,7 +395,7 @@ data = np.array([
 plt.imshow(data)
 ```
 
-![plot1](../assets/images/imshow.png)
+![plot1](../../assets/images/imshow.png)
 
 This is using the colormap "viridis" again, just like the scatterplot, which maps low numbers to purple and high numbers to yellow. Notice how the axis ticks show the indices of the array. We can add a colorbar by capturing the return value of imshow and passing it to `plt.colorbar()`:
 
@@ -412,7 +412,7 @@ plt.colorbar(im)
 plt.show()
 ```
 
-![plot1](../assets/images/imshow2.png)
+![plot1](../../assets/images/imshow2.png)
 
 If we want to use a different colormap, we can pass it into the `imshow` function using a keyword argument: `cmap`:
 
@@ -429,9 +429,9 @@ plt.colorbar(im)
 plt.show()
 ```
 
-![plot1](../assets/images/imshow3.png)
+![plot1](../../assets/images/imshow3.png)
 
-As we will explore in Chapter {{images}}, a color photograph is typically stored as a 3D numpy array of shape (height, width, 3), where the 3 indicates three dimensions of color: red, green and blue. If you have an image file on your computer, you can read it in to Python using matplotlib's `plt.imread()` function. I'm going to demonstrate using this using [this photo of my pet rabbit, Cornelius](../assets/images/test_image.jpg)
+As we will explore in Chapter {{images}}, a color photograph is typically stored as a 3D numpy array of shape (height, width, 3), where the 3 indicates three dimensions of color: red, green and blue. If you have an image file on your computer, you can read it in to Python using matplotlib's `plt.imread()` function. I'm going to demonstrate using this using [this photo of my pet rabbit, Cornelius](../../assets/images/test_image.jpg)
 
 ```
 image = plt.imread('test_image.jpg')
@@ -441,7 +441,7 @@ plt.imshow(image)
 
 Out: (768, 1024, 3)
 
-![plot1](../assets/images/imshow4.png)
+![plot1](../../assets/images/imshow4.png)
 
 Notice that the dimensions are still listed along the axes.
 
@@ -474,7 +474,7 @@ ax[1].plot([0,1], color=(0.6,0.95,0.65))
 ax[2].plot([0,1], color='#6aace2')
 ```
 
-![plot1](../assets/images/colors.png)
+![plot1](../../assets/images/colors.png)
 
 Each of these axes has the same plot in a different color.
 
@@ -491,6 +491,6 @@ data_z = np.random.normal(0, 1, 10)
 plt.scatter(data_x, data_y, c=data_z, cmap='spring')
 ```
 
-![plot1](../assets/images/colors2.png)
+![plot1](../../assets/images/colors2.png)
 
 The default colormaps 'viridis', 'plasma', 'inferno', 'magma' and 'cividis' are guaranteed to be *perceptually uniform* meaning that the colors change at approximately the same rate (for typical human perception) across the colormap. They are also colorblind-friendly, so people with colorblindness can also tell all the colors apart. This is a useful property, so when in doubt, try to choose one of these six default colormaps.

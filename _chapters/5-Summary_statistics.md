@@ -89,7 +89,7 @@ import matplotlib.pyplot as plt
 plt.boxplot(data)
 ```
 
-![a box plot showing the same data.](../assets/images/summary_statistics_boxplot.png)
+![a box plot showing the same data.](../../assets/images/summary_statistics_boxplot.png)
 
 
 
@@ -443,6 +443,6 @@ ax[1].set_ylabel('Estimated Standard Deviation')
 plt.show()
 ```
 
-![](../assets/images/rng.png)
+![](../../assets/images/rng.png)
 
 Notice how the estimate of the mean starts with a very wide range, but as the sample size increases, it converges to the correct value, with diminishing returns for larger sample sizes. A key goal of statistics as a discipline is to understand and measure the uncertainty in these sorts of estimated summary statistics. While it is not our top concern in data science, uncertainty is a key concept we will use going forward, especially when trying to understand the conclusions of our analysis and whether our predictions are trustworthy.

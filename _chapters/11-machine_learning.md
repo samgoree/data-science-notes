@@ -164,7 +164,7 @@ What we need for this model is a function that turns the output of linear regres
 $$
 \text{Sigmoid}(x) = \frac{1}{1+e^{-x}}
 $$
-![](../assets/images/sigmoid.png)
+![](../../assets/images/sigmoid.png)
 
 Notice this function starts at 0 for very large negative numbers and goes to 1 for very large positive numbers. The boundary between these two extremes happens smoothly, centered around 0. We can change the exponent in the denominator to vary the location and steepness of the boundary.
 $$

@@ -113,7 +113,7 @@ There are three ways of importing Python libraries. All of them use the `import`
 
 In computer science, we refer to a collection of programming tools that build on each other a "tech stack." In data science, we use the "Data Science Python" stack. This is a collection of open source Python libraries that build on one another.
 
-![the data science Python stack](../assets/images/data_science_python.png)
+![the data science Python stack](../../assets/images/data_science_python.png)
 
 (Source: https://chris35wills.github.io/courses/pydata_stack/)
 
@@ -247,7 +247,7 @@ Out: `array([1, 3, 6])`
 
 We can think of a boolean mask like a paper mask with holes cut in it:
 
-![](../assets/images/masking.png)
+![](../../assets/images/masking.png)
 
 We can generate boolean masks by using true/false statements about arrays:
 
@@ -385,7 +385,7 @@ Out: `(24,)`. The shape is still a tuple, since shapes are always tuples, but no
 
 We can also *reshape* an array into a new shape. Since the new array will be filled with the same values as the old array, the new shape must have integer dimensions which have the same product as the original shape. The order in which elements are added to the new array is the same as the order they occur in while flattened. This order moves quickly over the inner dimensions and slowly over the outer dimensions:
 
-![](../assets/images/c ordering.png)
+![](../../assets/images/c ordering.png)
 
 For example:
 

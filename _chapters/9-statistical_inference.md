@@ -48,7 +48,7 @@ rolling_mean = at_least_one_six.cumsum() / np.arange(n_trials)
 plt.plot(rolling_mean)
 ```
 
-![plot1](../assets/images/die_rolls.png)
+![plot1](../../assets/images/die_rolls.png)
 
 The value starts out jumping all over, but eventually settles to the theoretical value of 0.305.
 
@@ -62,11 +62,11 @@ We can summarize any random variable based on the way it distributes probability
 
 * Probability mass functions: These functions contain probability of specific values, but there are finitely many values that can come up. For example, the plot below shows a probability mass function which assigns probabilities only to the whole numbers 0-9. These discrete probabilities sum to 1. In our physical analogy, this is like a string of blocks of different weights, connected by a weightless wire.
 
-  ![plot1](../assets/images/probability_mass_function.png)
+  ![plot1](../../assets/images/probability_mass_function.png)
 
 * Probability density functions: These functions contain probability of every value on the number line. There are infinitely many possible values that can come out of these random variables. For example, the plot below shows a probability density function which assigns probabilities to continuous values from -10 to 10. Since this function is continuous, we have to use the concept of an integral from calculus to sum over it. Its probabilities integrate to 1. In our physical analogy, this is a solid object which is denser in some places than others.
 
-  ![plot1](../assets/images/probability_density_function.png)
+  ![plot1](../../assets/images/probability_density_function.png)
 
 With a mathematical definition for a random variable, now we can define operations that we have already seen, like the mean, in terms of theoretical probability.
 
@@ -140,7 +140,7 @@ The expected value of W is equal to the probability that any individual from the
 
 One of the most useful probability density functions in data science is the normal, or Gaussian distribution. This distribution is commonly known as a "bell curve" because of its shape. It describes random numbers which tend to be located around a single mean value, but can vary up or down indefinitely. We saw the normal distribution in Chapter {{chapter_statistics}} in the Numpy function `rng.normal`.
 
-![](../assets/images/random2.png)
+![](../../assets/images/random2.png)
 
 Normal distributions come up all over statistics because of a key result called the *central limit theorem*: the sum of many independent and identically distributed (iid) random variables is normally distributed. In practice what that means is that statisticians can usually assume that all sorts of continuous random variables are normally distributed, because their values are the sum of many iid random variables.
 
