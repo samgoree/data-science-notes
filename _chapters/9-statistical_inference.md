@@ -73,35 +73,57 @@ With a mathematical definition for a random variable, now we can define operatio
 #### Expectation
 
 The theoretical equivalent of the mean is the *expected value*, written with a "blackboard bold" E:
+
 $$
 \mathbb{E}[X] = \sum\limits_{x = -\infty}^{+\infty} xP(X=x)
 $$
+
 In case you missed it earlier, the large sigma (Σ) notates a sum over each value of x (like a for loop). In this case, it is an infinite sum, which practically means we sum over every value of x for which P(X=x) is nonzero. For example, let's say we have a random variable H that takes a coin flip and assigns 1 to a heads and 0 to a tails. The expected value of the coin flip is 
+
 $$
 \mathbb{E}[H] = 0 * P(X=0) + 1 * P(X=1) = 0 * 0.5 + 1 * 0.5 = 0.5
 $$
+
 Note that this equation is only in terms of the probability of each value the random variable, not anything related to the underlying random event.
 
 A key property of the expected value is called *linearity of expectation*: that means that the expected value function obeys two key properties of linear functions:
+
 $$
-\mathbb{E}[X + Y] = \mathbb{E}[X] + \mathbb{E}[Y] \\
+\mathbb{E}[X + Y] = \mathbb{E}[X] + \mathbb{E}[Y] 
+$$
+
+$$
 \mathbb{E}[aX] = a \mathbb{E}[X]
 $$
+
 Where X and Y are any two random variables and a is a constant.
 
 #### Variance
 
 The variance of a random variable is defined similarly to the variance of a sample: the expected squared difference from the expected value.
+
 $$
 \mathbb{V}[X] = \mathbb{E}[(X - \mathbb{E}[X])^2]
 $$
+
 As we also saw before, we can rearrange that definition using linearity of expectation to arrive at another definition for variance: the difference between the expectation of a variable squared and the expectation of the squared variable.
+
 $$
-\mathbb{V}[X] = \mathbb{E}[X^2 - 2X\mathbb{E}[X] + \mathbb{E}[X]^2] \\
-= \mathbb{E}[X^2] - 2\mathbb{E}[X]\mathbb{E}[X] + \mathbb{E}[\mathbb{E}[X]^2] \\
-= \mathbb{E}[X^2] - 2 \mathbb{E}[X]^2 + \mathbb{E}[X]^2 \\
+\mathbb{V}[X] = \mathbb{E}[X^2 - 2X\mathbb{E}[X] + \mathbb{E}[X]^2] 
+$$
+
+$$
+= \mathbb{E}[X^2] - 2\mathbb{E}[X]\mathbb{E}[X] + \mathbb{E}[\mathbb{E}[X]^2] 
+$$
+
+$$
+= \mathbb{E}[X^2] - 2 \mathbb{E}[X]^2 + \mathbb{E}[X]^2 
+$$
+
+$$
 = \mathbb{E}[X^2] - \mathbb{E}[X]^2
 $$
+
 This quantity becomes large when the random variable has a lot of high probability values far from the expected value and will become 0 when the random variable always has the same value. Note that random variables do not involve data -- these concepts are only defined in terms of probability.
 
 ### Example: Counting Invisible People
@@ -117,21 +139,33 @@ However, we can use statistics to estimate the size of such a population using s
 This is a technique called the Lincoln-Peterson Estimator.
 
 Why does it work? Well, consider the probabilities for an individual i:
+
 $$
 P(i\text{ in }A) = U / N
 $$
+
 P(i in A) is the probability that individual i is in sample A. Sample A contains U members of the target group, which is of unknown size N.
+
 $$
 P(i\text{ in }B) = V / N
 $$
+
 P(i in B) is the probability that individual i is in sample B. Sample B contains V members of the target group, which is of unknown size N.
 
 So how many individuals are expected to overlap? Call the overlap W:
+
 $$
-P(i\text{ in both}) = P(i\text{ in }A)P(i\text{ in }B) \\
-W = \#(\text{i in both})\\
+P(i\text{ in both}) = P(i\text{ in }A)P(i\text{ in }B) 
+$$
+
+$$
+W = \#(\text{i in both})
+$$
+
+$$
 \mathbb{E}[W] = \sum\limits_{i \text{ in }A} 1 * P(i\text{ in }B) = U P(i \text{ in } B) = UV/N
 $$
+
 In this context, the # symbol is used to mean the "number of" elements with a given property.
 
 The expected value of W is equal to the probability that any individual from the population is in B, times U, which is the number of those individuals in A. You can think of this as going down the line of people in sample A: the probability that the first person is in sample B plus the probability that the second person is in sample B, plus the probability that the third person is in sample B etc. That expected value works out to UV / N. If we solve for our unknown, N, we arrive at our estimator UV / W.
@@ -145,9 +179,11 @@ One of the most useful probability density functions in data science is the norm
 Normal distributions come up all over statistics because of a key result called the *central limit theorem*: the sum of many independent and identically distributed (iid) random variables is normally distributed. In practice what that means is that statisticians can usually assume that all sorts of continuous random variables are normally distributed, because their values are the sum of many iid random variables.
 
 The actual functional form that produces this curve is a little complicated:
+
 $$
 \mathcal{N}(x;\mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{- \frac{(x - \mu)^2}{2\sigma^2}}
 $$
+
 The function contains many unusual symbols: 
 
 * The script N is the name of our function. N(x) is the height of the curve at point x on the x-axis.
@@ -172,64 +208,133 @@ Some things that you can prove about the normal distribution using calculus:
 At this point, we are very familiar with computing the mean and variance of a dataset. In statistics, simply computing the mean of a dataset without doing any more sophisticated analysis is often called a *population mean* since it assumes we have collected data for the entire population under study. If we want to treat our data as a sample and talk about a larger population, those statistics become the *sample mean* and *sample variance* instead.
 
 Let's say we have a normally distributed random variable X with true population mean mu. We collect n samples from X and compute the mean of those samples (as seen before, statisticians use bars above variables to indicate sample means).
+
 $$
 \bar x = \frac{1}{n}\sum\limits_{i=1}^n x_i
 $$
+
 What is the expected value of the sample mean? We can compute that using linearity of expectation and the expected value of the normal distribution:
 $$
-\mathbb{E}[\bar x] = \mathbb{E}[\frac{1}{n}\sum\limits_{i=1}^n x_i] \\
-= \frac{1}{n}\sum\limits_{i=1}^n \mathbb{E}[x_i] \\
-= \frac{1}{n}\sum\limits_{i=1}^n \mu \\
+
+\mathbb{E}[\bar x] = \mathbb{E}[\frac{1}{n}\sum\limits_{i=1}^n x_i] 
+$$
+
+$$
+= \frac{1}{n}\sum\limits_{i=1}^n \mathbb{E}[x_i] 
+$$
+
+$$
+= \frac{1}{n}\sum\limits_{i=1}^n \mu 
+$$
+
+$$
 = \mu
 $$
+
 Therefore, the sample mean is a good estimate for the population mean.
 
 What is the expected value of the sample variance? 
+
 $$
-\mathbb{E}[Var] = \mathbb{E} [\frac{1}{n} \sum\limits_{i=1}^{n} (x_i - \bar x)^2 ] \\
-= \mathbb{E}[\frac{1}{n} \sum\limits_{i=1}^{n} (x_i^2 - 2x_i\bar x + \bar x^2)] \\
-= \frac{1}{n} \sum\limits_{i=1}^{n} (\mathbb{E}[x_i^2] - \mathbb{E}[2x_i\bar x] + \mathbb{E}[\bar x^2]) \\
-= \frac{1}{n} \sum\limits_{i=1}^{n} (\mathbb{E}[x_i^2] - 2\mathbb{E}[\bar x^2] + \mathbb{E}[\bar x^2]) \\
-= \frac{1}{n} \sum\limits_{i=1}^{n} (\mathbb{E}[x_i^2] - \mathbb{E}[\bar x^2]) \\
+\mathbb{E}[Var] = \mathbb{E} [\frac{1}{n} \sum\limits_{i=1}^{n} (x_i - \bar x)^2 ] 
 $$
+
+$$
+= \mathbb{E}[\frac{1}{n} \sum\limits_{i=1}^{n} (x_i^2 - 2x_i\bar x + \bar x^2)] 
+$$
+
+$$
+= \frac{1}{n} \sum\limits_{i=1}^{n} (\mathbb{E}[x_i^2] - \mathbb{E}[2x_i\bar x] + \mathbb{E}[\bar x^2]) 
+$$
+
+$$
+= \frac{1}{n} \sum\limits_{i=1}^{n} (\mathbb{E}[x_i^2] - 2\mathbb{E}[\bar x^2] + \mathbb{E}[\bar x^2]) 
+$$
+
+$$
+= \frac{1}{n} \sum\limits_{i=1}^{n} (\mathbb{E}[x_i^2] - \mathbb{E}[\bar x^2]) 
+$$
+
 Now that first term, the expectation of each variable squared, is tricky to deal with. It is not equal to the squared expectation of x, because squaring is not one of the operations allowed under linearity of expectation. But we can do a little trick involving the definition of variance:
+
 $$
-\mathbb{V}[x] = \mathbb{E}[x^2] - \mathbb{E}[x]^2 \\
+\mathbb{V}[x] = \mathbb{E}[x^2] - \mathbb{E}[x]^2 
+$$
+
+$$
 \mathbb{E}[x^2] = \mathbb{V}[x] + \mathbb{E}[x]^2
 $$
+
 Substituting back into the sum:
+
 $$
-\frac{1}{n} \sum\limits_{i=1}^{n} (\mathbb{E}[x_i^2] - \bar x^2) \\
-= \frac{1}{n} \sum\limits_{i=1}^{n} (\mathbb{V}[x_i] + \mathbb{E}[x_i]^2 - (\mathbb{V}[\bar x] + \mathbb{E}[\bar x]^2)) \\
+\frac{1}{n} \sum\limits_{i=1}^{n} (\mathbb{E}[x_i^2] - \bar x^2) 
 $$
+
+$$
+= \frac{1}{n} \sum\limits_{i=1}^{n} (\mathbb{V}[x_i] + \mathbb{E}[x_i]^2 - (\mathbb{V}[\bar x] + \mathbb{E}[\bar x]^2)) 
+$$
+
 We know by the properties of the normal distribution what the expectation and variance of each x<sub>i</sub> should be, but the terms inside the parentheses are a little confusing. The variance of the mean of x and the expectation of the mean of x don't make a ton of intuitive sense, but we can use the definition of the mean to figure them out:
+
 $$
-\mathbb{V}[\bar x] = \mathbb{E}[(\bar x)^2] - \mathbb{E}[(\bar x)]^2 \\
-= \mathbb{E}[\frac{1}{n^2}(\sum\limits_{i=1}^n x_i)^2] - \mathbb{E}[\frac{1}{n}(\sum\limits_{i=1}^n x_i)]^2 \\
-= \frac{1}{n^2}\mathbb{E}[(\sum\limits_{i=1}^n x_i)^2] - \mathbb{E}[(\sum\limits_{i=1}^n x_i)]^2 \\
+\mathbb{V}[\bar x] = \mathbb{E}[(\bar x)^2] - \mathbb{E}[(\bar x)]^2 
+$$
+
+$$
+= \mathbb{E}[\frac{1}{n^2}(\sum\limits_{i=1}^n x_i)^2] - \mathbb{E}[\frac{1}{n}(\sum\limits_{i=1}^n x_i)]^2 
+$$
+
+$$
+= \frac{1}{n^2}\mathbb{E}[(\sum\limits_{i=1}^n x_i)^2] - \mathbb{E}[(\sum\limits_{i=1}^n x_i)]^2 
+$$
+
+$$
 = \frac{1}{n^2}\sum\limits_{i=1}^n \mathbb{V}[x_i]
 $$
+
 And we know by the properties of the normal distribution that the variance of each x is equal to σ<sup>2</sup>. Therefore:
+
 $$
-\mathbb{V}[\bar x] = \frac{1}{n^2}\sum\limits_{i=1}^n \sigma^2 \\
+\mathbb{V}[\bar x] = \frac{1}{n^2}\sum\limits_{i=1}^n \sigma^2 
+$$
+
+$$
 = \frac{\sigma^2}{n}
 $$
+
 *Sidenote:* This is a very special quantity: the variance of the sample mean. If we take the square root, we get a statistic called the standard error of the mean:
+
 $$
 SEM = \frac{\sigma}{\sqrt{n}}
 $$
+
 Similarly, the expectation of the mean of each x is equal to μ. Substituting those values in, we get:
+
 $$
-\frac{1}{n} \sum\limits_{i=1}^{n} (\mathbb{V}[x_i] + \mathbb{E}[x_i]^2 - (\mathbb{V}[\bar x] + \mathbb{E}[\bar x]^2)) \\
-= \sigma^2 + \mu^2 - (\sigma^2/n + \mu^2) \\
+\frac{1}{n} \sum\limits_{i=1}^{n} (\mathbb{V}[x_i] + \mathbb{E}[x_i]^2 - (\mathbb{V}[\bar x] + \mathbb{E}[\bar x]^2)) 
+$$
+
+$$
+= \sigma^2 + \mu^2 - (\sigma^2/n + \mu^2) 
+$$
+
+$$
 = \sigma^2(1-1/n)
 $$
 Which means that computing the variance on a sample doesn't estimate the true variance σ<sup>2</sup> of the population, it estimates σ<sup>2</sup>(1 - 1/n). In other words, when n is small it will systematically underestimate the right value. We can fix this problem by performing "Bessel's correction" and calculating the sample variance or standard deviation using the corrected formula:
 $$
-s^2 = \frac{n}{n-1} Var(x) \\
-= \frac{1}{n-1} \sum\limits_{i=1}^{n} (x_i - \bar x)^2 \\
+s^2 = \frac{n}{n-1} Var(x) 
+$$
+
+$$
+= \frac{1}{n-1} \sum\limits_{i=1}^{n} (x_i - \bar x)^2 
+$$
+
+$$
 s = \sqrt{s^2}
 $$
+
 While you are not expected to do these sorts of mathematical proofs regularly as a data scientist, you are expected to understand and apply ideas like these developed and proved by statisticians. If you are interested in this kind of rigorous understanding of data analysis techniques, you may want to take a course in probability and statistics, such as Stonehill's MTH 395.
 
 ## Hypothesis Testing
@@ -248,9 +353,11 @@ In hypothesis testing, rather than try to come up with a statistical interpretat
 Let's say we have data about student test scores before and after taking a class. We measure the change in each student's score. We hypothesize that the change in scores for the population of all students should be, on average, greater than zero (meaning that the students learned from their class). That is our alternative hypothesis. The corresponding null hypothesis is that the change in the mean of the scores is exactly zero.
 
 We can quantify the probability of the null hypothesis by looking at the actual mean's difference from the null hypothesis, and dividing by the standard error of the mean to get a ratio: how far away is our mean from the null hypothesis, measured in units of standard error?
+
 $$
 t = \frac{\bar x - x_0}{SEM} = \frac{\bar x - x_0}{s / \sqrt{n}}
 $$
+
 This statistic, which is often called "Student's T" can give us the probability of the data under the null hypothesis through a table lookup. In practice, however, we can use a function from the library scipy to do this test.
 
 ```python
@@ -269,10 +376,15 @@ This function computes three values:
 Now, let's say we have two groups of students, A and B. Group A takes class A while group B takes class B, but both are assessed via the same tests. We similarly compute the change in each students test score. We hypothesize that group A will improve more than group B. That is our alternative hypothesis. The corresponding null hypothesis is that the two groups improved the same amount, i.e. the means of their changes in scores will be equal.
 
 We can perform almost the same test on the difference between the two sample means using a slightly different t statistic:
+
 $$
-t = \frac{\bar x_a - \bar x_b}{\sqrt{s_{ab}^2 (1/n_a + 1/n_b)} } \\
+t = \frac{\bar x_a - \bar x_b}{\sqrt{s_{ab}^2 (1/n_a + 1/n_b)} } 
+$$
+
+$$
 s_{ab}^2 = \frac{(n_a - 1)s_a^2 + (n_b - 1)s_b^2}{n_1+n_2 -2}
 $$
+
 Here, the subscripts indicate which sample the mean or variance is from. The formulas are more complex because they take into account the difference in sample size between the two groups, as well as Bessel's correction.
 
 Similarly, we can compute the values for this test using scipy:
