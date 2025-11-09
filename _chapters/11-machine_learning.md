@@ -83,7 +83,7 @@ This metric asks "of all the patients who have the rare cancer, how many did we 
 
 ## Two Example Classifiers
 
-  ### Decision Trees
+### Decision Trees
 
 Effectively, the thing that we want is a series of "if-then-else" statements about whether it is a good day to play tennis. For example, if it is overcast, it is a good day to play tennis. But if it's rainy, it is only a good day to play tennis if it is not windy. As humans, we can list a bunch of these decision rules just by looking at the data. However, if there were hundreds of rows or columns, it would be much more difficult, so we would like an automated algorithm to figure it out for us.
 
