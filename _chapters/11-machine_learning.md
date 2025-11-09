@@ -187,3 +187,5 @@ y_pred = model.predict(new_x_values)
 ## Towards Machine Learning
 
 The models we have explored in this and the previous chapter are a first look at the field of machine learning from computer science. Computer scientists have developed algorithms to fit these models to data and use them to make predictions, and so they are very valuable for predictive modeling in data science.
+
+Machine learning and statistics are separate fields with very different languages, but they are ultimately two views of the same underlying world of mathematical modeling.

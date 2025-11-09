@@ -2,7 +2,6 @@
 layout: post
 title:  "Chapter 9: Statistical Inference"
 number: 9
-
 ---
 
 In Chapter {{chapter_statistics}}, we encountered summary statistics such as mean and correlation. These statistics all describe *samples*: sets of data that we have actually collected about a subset of a population. In this chapter, we will start discussing statistics that we can estimate about populations based on samples.

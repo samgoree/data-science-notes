@@ -34,7 +34,10 @@ The first symbol there is a script L, which we use for "loss." You can see it is
 
 Now, we need to find the best possible values of the parameters to minimize the loss. We can do that using the concept of optimization from calculus. If you have studied calculus, the idea is to take the derivative of the loss with respect to b, set it equal to zero and solve. Then take the derivative of the loss with respect to m, set it equal to zero and solve. Ultimately, the solution ends up being:
 $$
-b = \bar y - m \bar x \\
+b = \bar y - m \bar x
+$$
+
+$$
 m = \frac{\sum\limits_{i=1}^n (x_i - \bar x) (y_i - \bar y)}{\sum\limits_{i=1}^n (x_i - \bar x)^2}
 $$
 For practical purposes, this solution is implemented in a library called scipy.
@@ -69,7 +72,7 @@ A popular summary statistic for evaluating the quality of a linear regression is
 $$
 R^2=1 - \frac{\sum\limits_{i=1}^n (y_i - \hat y_i)^2}{\sum\limits_{i=1}^n (y_i - \bar y)^2}
 $$
-In the context of one dimensional linear regression, this statistic also turns out to be exactly equal to the correlation between X and Y, squared (hence the symbol R-squared).
+This statistic, in this context, also turns out to be exactly equal to the square of the correlation between X and Y (hence the symbol R-squared).
 
 Another way to interpret this statistic is to look at the top of the fraction, which is our loss, the sum of squared residuals vs. the bottom, which is the variance of y. From this perspective, R-squared measures the fraction of the variance in the data which is accounted for by our prediction, y-hat. This statistic can never be larger than 1, since the top and bottom of the fraction are sums of squares which can never be negative, however it can be less than zero if the m value from the regression model is seriously wrong and introduces more variance than it accounts for.
 
@@ -174,7 +177,9 @@ Or even fit a degree 10 polynomial!
 
 Which of these models is best?
 
-If our only goal is minimizing the error, the model with as many terms as possible is best. But in data science, our goal is usually not minimizing the error, but modeling a real relationship in the world. As a result, we need some way to test whether our model actually generalizes or not. Data scientists typically test generalization by splitting the data into two groups: a training set and a testing set. The training set is used to fit the model, while the testing set is used to evaluate whether or not the model is *overfit* to the training data, meaning that it is too close to the training data and 
+If our only goal is minimizing the error, the model with as many terms as possible is best. But in data science, our goal is usually not minimizing the error, but modeling a real relationship in the world. As a result, we need some way to test whether our model actually generalizes or not. Data scientists typically test generalization by splitting the data into two groups: a training set and a testing set. 
+
+The training set is used to fit the model, while the testing set is used to evaluate whether or not the model is *overfit* to the training data, meaning that it is too close to the training data and has thus failed to predict the testing data.
 
 <img src="../../assets/images/polynomial6.png"/>
 
@@ -194,3 +199,37 @@ From this plot, we see that the test error is lowest when the model has degree 2
 $$
 A=\pi (d/2)^2
 $$
+
+### Train-Test Splits in Scikit-Learn
+
+We can randomly split a dataset into training and test sets by getting a list of row numbers, shuffling it, and slicing some of the values:
+
+```python
+# assuming X and y are our features and target:
+test_fraction = 0.2
+rows = np.arange(len(X))
+np.random.shuffle(rows)
+n_test = int(test_fraction * len(X))
+test_rows = rows[:n_test]
+train_rows = rows[n_test:]
+
+X_train = X[train_rows]
+X_test = X[test_rows]
+y_train = y[train_rows]
+y_test = y[test_rows]
+```
+
+Rather than retyping all of this code every time, there is a scikit-learn function that implements it:
+
+```python
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+```
+
+We can then fit on the training set and score on the testing set:
+
+```python
+model = LinearRegression()
+model.fit(X_train, y_train)
+print('Score:', np.score(X_test,y_test))
+```
